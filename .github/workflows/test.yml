@@ -1,0 +1,25 @@
+name: Test
+
+on:
+  push:
+  workflow_dispatch:
+
+
+jobs:
+
+  clone-via-http:
+    runs-on: ubuntu-latest
+    steps:
+
+      - name: Clone repository
+        uses: fewensa/clone-any-action@main
+        with:
+          repository: git@gitlab.com:repotea-workspace/aprinter.git
+          ssh-host: gitlab.com
+          ssh-key: ${{ secrets.SSH_PRIVATE_KEY }}
+
+      - name: Access cloned repository content
+        run: |
+          cd aprinter
+          ls -l
+
