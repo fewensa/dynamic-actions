@@ -18,7 +18,7 @@ jobs:
         with:
           flutter-version: '2.x'
           channel: 'stable'
-      - run: cd aprinter && flutter pub get
-      - run: cd aprinter && flutter test
-      - run: cd aprinter && flutter build apk --release
-      - run: cd aprinter && flutter build appbundle --release
+      - run: flutter pub get
+      - run: flutter test
+      - run: flutter build apk --release
+      - run: flutter build appbundle --release
