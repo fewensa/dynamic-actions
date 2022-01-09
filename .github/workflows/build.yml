@@ -1,0 +1,24 @@
+name: Build
+
+on:
+  push:
+
+jobs:
+  build-android:
+    name: Build android
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: fewensa/clone-any-action@main
+        with:
+          repository: https://gitlab.com/repotea-workspace/aprinter
+          access_token: '${{ secrets.GITLAB_TOKEN }}'
+
+      - uses: subosito/flutter-action@v2
+        with:
+          flutter-version: '2.x'
+          channel: 'stable'
+      - run: cd aprinter && flutter pub get
+      - run: cd aprinter && flutter test
+      - run: cd aprinter && flutter build apk --release
+      - run: cd aprinter && flutter build appbundle --release
