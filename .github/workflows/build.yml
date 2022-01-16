@@ -8,11 +8,25 @@ jobs:
     name: Build android
     runs-on: ubuntu-latest
     steps:
+      - uses: actions/checkout@v2
+        with:
+          repository: fewensa/actions
+          path: .github/actions
+
       - name: Checkout
-        uses: fewensa/clone-any-action@main
+        uses: .github/actions/clone-any
         with:
           repository: https://gitlab.com/repotea-workspace/aprinter
           access_token: '${{ secrets.GITLAB_TOKEN }}'
+
+      - name: Generate android key
+        uses: .github/actions/gen-android-sign
+        with:
+          path: android/key.properties
+          signingKeyBase64: ${{ secrets.APRINTER_JKS }}
+          alias: ${{ secrets.APRINTER_KEY_ALIAS }}
+          keyStorePassword: ${{ secrets.APRINTER_STORE_PASSWORD }}
+          keyPassword: ${{ secrets.APRINTER_KEY_PASSWORD }}
 
       - uses: actions/setup-java@v2
         with:
