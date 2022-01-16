@@ -19,7 +19,7 @@ jobs:
           repository: https://gitlab.com/repotea-workspace/aprinter
           access_token: '${{ secrets.GITLAB_TOKEN }}'
 
-      - name: Generate android key
+      - name: Generate android sign config file
         uses: ./.github/actions/gen-android-sign
         with:
           path: android/key.properties
