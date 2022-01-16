@@ -14,13 +14,13 @@ jobs:
           path: .github/actions
 
       - name: Checkout
-        uses: .github/actions/clone-any
+        uses: ./.github/actions/clone-any
         with:
           repository: https://gitlab.com/repotea-workspace/aprinter
           access_token: '${{ secrets.GITLAB_TOKEN }}'
 
       - name: Generate android key
-        uses: .github/actions/gen-android-sign
+        uses: ./.github/actions/gen-android-sign
         with:
           path: android/key.properties
           signingKeyBase64: ${{ secrets.APRINTER_JKS }}
