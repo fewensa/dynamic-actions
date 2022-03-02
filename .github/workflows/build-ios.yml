@@ -61,6 +61,9 @@ jobs:
 
       - name: Upload SDK
         run: |
+          set -xe
+          cd BY248BT-ios-sdk
+          
           tar -zcvf build.tgz build
           mc cp build.tgz kahub/open/
           
