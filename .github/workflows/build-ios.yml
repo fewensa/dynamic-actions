@@ -24,9 +24,14 @@ jobs:
       - name: Build framework
         run: |
           cd BY248BT-ios-sdk
+          
           xcodebuild -quiet \
             -project BeeprtPrinterBY.xcodeproj \
-            -scheme BeeprtPrinter \
+            -list
+          
+          xcodebuild -quiet \
+            -project BeeprtPrinterBY.xcodeproj \
+            -scheme BeeprtPrinterBY \
             -configuration Release \
             -sdk iphoneos \
             -derivedDataPath build \
