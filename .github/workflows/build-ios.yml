@@ -21,6 +21,10 @@ jobs:
           repository: prtmax/legacy-psdk
           access_token: '${{ secrets.GITLAB_TOKEN }}'
 
+      - name: Install dependencies
+        run: |
+          brew install tree
+
       - name: Build framework
         run: |
           set -xe
@@ -46,5 +50,6 @@ jobs:
           cd BY248BT-ios-sdk
           ls -la
           ls -la build
+          tree build
 
 
