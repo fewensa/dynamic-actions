@@ -17,7 +17,8 @@ jobs:
       - name: Checkout
         uses: ./.github/actions/clone-any
         with:
-          repository: https://gitlab.com/prtmax/legacy-psdk
+          platform: gitlab
+          repository: prtmax/legacy-psdk
           access_token: '${{ secrets.GITLAB_TOKEN }}'
 
       - name: Build framework
