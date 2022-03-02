@@ -37,3 +37,4 @@ jobs:
         run: |
           cd BY248BT-ios-sdk
           tree build
+
