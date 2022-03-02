@@ -24,6 +24,12 @@ jobs:
       - name: Install dependencies
         run: |
           brew install tree
+          brew install p7zip
+          brew install minio-mc
+
+      - name: Config minio
+        run: |
+          mc config host add kahub ${{ secrets.MIO_ENDPOINT }} ${{ secrets.MIO_AK }} ${{ secrets.MIO_SK }}
 
       - name: Build framework
         run: |
@@ -50,6 +56,14 @@ jobs:
           cd BY248BT-ios-sdk
           ls -la
           ls -la build
+          ls -la build/Build
           tree build
 
+      - name: Upload SDK
+        run: |
+          tar -zcvf build.tgz build
+          mc cp build.tgz kahub/open/
+          
+          7z a -tzip build.zip ./build
+          mc cp build.zip kahub/open/
 
