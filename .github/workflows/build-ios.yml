@@ -22,7 +22,7 @@ jobs:
 #          access_token: '${{ secrets.GITLAB_TOKEN }}'
 
       - name: Checkout
-        uses: fewensa/actions@main/clone-any
+        uses: fewensa/actions@main
         with:
           platform: gitlab
           repository: prtmax/legacy-psdk
