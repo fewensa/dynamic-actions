@@ -9,20 +9,13 @@ jobs:
     name: Build iOS
     runs-on: macos-latest
     steps:
-#      - uses: actions/checkout@v2
-#        with:
-#          repository: fewensa/actions
-#          path: .github/actions
-#
-#      - name: Checkout
-#        uses: ./.github/actions/clone-any
-#        with:
-#          platform: gitlab
-#          repository: prtmax/legacy-psdk
-#          access_token: '${{ secrets.GITLAB_TOKEN }}'
+      - uses: actions/checkout@v2
+        with:
+          repository: fewensa/actions
+          path: .github/actions
 
       - name: Checkout
-        uses: fewensa/actions@main
+        uses: ./.github/actions/clone-any
         with:
           platform: gitlab
           repository: prtmax/legacy-psdk
@@ -30,6 +23,7 @@ jobs:
 
       - name: Build framework
         run: |
+          set -xe
           cd BY248BT-ios-sdk
           
           xcodebuild -quiet \
@@ -48,7 +42,9 @@ jobs:
 
       - name: List build
         run: |
+          set -xe
           cd BY248BT-ios-sdk
-          tree build
+          ls -la
+          ls -la build
 
 
