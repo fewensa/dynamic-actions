@@ -1,0 +1,39 @@
+name: Build iOS
+
+
+on:
+  push:
+
+jobs:
+  build-ios:
+    name: Build iOS
+    runs-on: macos-latest
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          repository: fewensa/actions
+          path: .github/actions
+
+      - name: Checkout
+        uses: ./.github/actions/clone-any
+        with:
+          repository: https://gitlab.com/prtmax/legacy-psdk
+          access_token: '${{ secrets.GITLAB_TOKEN }}'
+
+      - name: Build framework
+        run: |
+          cd BY248BT-ios-sdk
+          xcodebuild -quiet \
+            -project BeeprtPrinterBY.xcodeproj \
+            -scheme BeeprtPrinter \
+            -configuration Release \
+            -sdk iphoneos \
+            -derivedDataPath build \
+            ONLY_ACTIVE_ARCH=NO \
+            CONFIGURATION_BUILD_DIR=. \
+            clean build
+
+      - name: List build
+        run: |
+          cd BY248BT-ios-sdk
+          tree build
