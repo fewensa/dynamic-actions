@@ -27,7 +27,7 @@ jobs:
           brew install p7zip
           brew install minio-mc
 
-      - name: Config minio
+      - name: Setup minio
         run: |
           mc config host add kahub ${{ secrets.MIO_ENDPOINT }} ${{ secrets.MIO_AK }} ${{ secrets.MIO_SK }}
 
