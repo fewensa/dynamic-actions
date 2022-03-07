@@ -34,7 +34,7 @@ jobs:
       - name: Build framework
         run: |
           set -xe
-          cd BY248BT-ios-sdk
+          cd BY248BT/BY248BT-ios-sdk
           
           xcodebuild -quiet \
             -project BeeprtPrinterBY.xcodeproj \
@@ -53,7 +53,7 @@ jobs:
       - name: List build
         run: |
           set -xe
-          cd BY248BT-ios-sdk
+          cd BY248BT/BY248BT-ios-sdk
           ls -la
           ls -la build
           ls -la build/Build
@@ -62,7 +62,7 @@ jobs:
       - name: Upload SDK
         run: |
           set -xe
-          cd BY248BT-ios-sdk
+          cd BY248BT/BY248BT-ios-sdk
           
           tar -zcvf build.tgz build
           mc cp build.tgz kahub/open/
