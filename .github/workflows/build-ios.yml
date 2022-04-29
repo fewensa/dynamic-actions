@@ -1,4 +1,4 @@
-name: Build iOS
+name: Build legacy-sdk iOS
 
 
 on:
@@ -65,8 +65,8 @@ jobs:
           cd BY248BT/BY248BT-ios-sdk
 
           # tar -zcvf prtmax-legacy-ios-by248bt.tgz build
-          # mc cp prtmax-legacy-ios-by248bt.tgz kahub/open/
+          # mc cp prtmax-legacy-ios-by248bt.tgz kahub/open/public/
 
           7z a -tzip prtmax-legacy-ios-by248bt.zip ./build
-          mc cp prtmax-legacy-ios-by248bt.zip kahub/open/
+          mc cp prtmax-legacy-ios-by248bt.zip kahub/open/public/
 
