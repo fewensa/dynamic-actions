@@ -35,11 +35,11 @@ jobs:
         run: |
           set -xe
           cd BY248BT/BY248BT-ios-sdk
-          
+
           xcodebuild -quiet \
             -project BeeprtPrinterBY.xcodeproj \
             -list
-          
+
           xcodebuild -quiet \
             -project BeeprtPrinterBY.xcodeproj \
             -scheme BeeprtPrinterBY \
@@ -63,10 +63,10 @@ jobs:
         run: |
           set -xe
           cd BY248BT/BY248BT-ios-sdk
-          
-          tar -zcvf build.tgz build
-          mc cp build.tgz kahub/open/
-          
-          7z a -tzip build.zip ./build
-          mc cp build.zip kahub/open/
+
+          # tar -zcvf prtmax-legacy-ios-by248bt.tgz build
+          # mc cp prtmax-legacy-ios-by248bt.tgz kahub/open/
+
+          7z a -tzip prtmax-legacy-ios-by248bt.zip ./build
+          mc cp prtmax-legacy-ios-by248bt.zip kahub/open/
 
