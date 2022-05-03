@@ -44,5 +44,15 @@ jobs:
       - name: Check build
         run: ls csusb/bin/Release/netcoreapp3.1/win-x86/publish/
 
+      - uses: olegtarasov/get-tag@v2.1
+        id: tag-name
+      - uses: benjlevesque/short-sha@v1.2
+        id: short-sha
+        with:
+          length: 7
+
       - name: Publish csusb
-        run: echo 'publish csusb'
+        run: |
+          echo 'publish csusb'
+          echo ${GIT_TAG_NAME}
+          echo ${SHA}
