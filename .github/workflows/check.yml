@@ -1,4 +1,4 @@
-name: (csusb) Check
+name: '[csusb] Check'
 
 on:
   push:
