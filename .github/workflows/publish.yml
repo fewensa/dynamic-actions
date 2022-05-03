@@ -1,10 +1,12 @@
 name: Publish csusb
 
+#on:
+#  push:
+#    tags:
+#      - "v*"
+
 on:
   push:
-    tags:
-      - "v*"
-
 
 jobs:
   publish-csusb:
