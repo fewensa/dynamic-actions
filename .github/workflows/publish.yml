@@ -1,0 +1,44 @@
+name: Publish csusb
+
+on:
+  push:
+    tags:
+      - "v*"
+
+
+jobs:
+  publish-csusb:
+    name: Build csusb
+    runs-on: windows-latest
+    steps:
+
+      - uses: actions/checkout@v2
+        with:
+          repository: fewensa/actions
+          path: .github/actions
+
+      - name: Checkout
+        uses: ./.github/actions/clone-any
+        with:
+          platform: gitlab
+          repository: repotea-workspace/csusb
+          access_token: '${{ secrets.GITLAB_TOKEN }}'
+
+      - uses: actions/setup-dotnet@v2
+        with:
+          dotnet-version: '3.1.x'
+
+      - name: Build csusb
+        run: |
+          dotnet publish \
+            -c Release \
+            -r win-x86 \
+            -p:PublishSingleFile=true \
+            -p:PublishTrimmed=true \
+            -p:PublishReadyToRun=true \
+            -p:IncludeNativeLibrariesForSelfExtract=true \
+            -p:PublishReadyToRunShowWarnings=true \
+            --self-contained true
+
+      - name: Check build
+        run: ls csusb/bin/Release/netcoreapp3.1/win-x86/publish/
