@@ -3,7 +3,7 @@ name: '[csusb] Check'
 on:
   push:
     branches:
-      - '*'
+      - '**'
 
 jobs:
   check-csusb:
