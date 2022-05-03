@@ -6,8 +6,8 @@ on:
       - "v*"
 
 jobs:
-  publish-csusb:
-    name: Publish csusb
+  build-csusb:
+    name: Build csusb
     runs-on: windows-latest
     steps:
       - uses: actions/checkout@v2
@@ -44,15 +44,35 @@ jobs:
       - name: Check build
         run: ls csusb/bin/Release/netcoreapp3.1/win-x86/publish/
 
-      - uses: olegtarasov/get-tag@v2.1
-        id: tag-name
-      - uses: benjlevesque/short-sha@v1.2
-        id: short-sha
-        with:
-          length: 7
-
-      - name: Publish csusb
+      - name: Collect shared
         run: |
-          echo 'publish csusb'
-          echo ${GIT_TAG_NAME}
-          echo ${SHA}
+          mkdir -p shared
+          cp csusb/bin/Release/netcoreapp3.1/win-x86/publish/csusb.exe shared/
+
+      - name: Upload shared
+        uses: actions/upload-artifact@v2
+        with:
+          name: shared-artifact
+          path: shared
+
+  publish-csusb:
+    name: Publish csusb
+    runs-on: ubuntu-latest
+    needs: [ build-csusb ]
+    steps:
+      - uses: actions/download-artifact@v2
+        with:
+          name: shared-artifact
+          path: shared
+
+      - name: Hash file
+        run: |
+          (cd shared && sha256sum * | tee sha256sums.txt)
+
+      - name: Publish github release
+        uses: softprops/action-gh-release@v1
+        with:
+          files: |
+            shared/*
+          token: ${{ secrets.GITHUB_TOKEN }}
+
