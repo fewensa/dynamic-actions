@@ -1,13 +1,11 @@
-name: Publish csusb
+name: Check csusb
 
 on:
   push:
-    tags:
-      - "v*"
 
 jobs:
-  publish-csusb:
-    name: Publish csusb
+  check-csusb:
+    name: Build csusb
     runs-on: windows-latest
     steps:
 
@@ -41,6 +39,3 @@ jobs:
 
       - name: Check build
         run: ls csusb/bin/Release/netcoreapp3.1/win-x86/publish/
-
-      - name: Publish csusb
-        run: echo 'publish csusb'
