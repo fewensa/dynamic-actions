@@ -1,4 +1,4 @@
-name: [csusb] Publish
+name: (csusb) Publish
 
 on:
   push:
