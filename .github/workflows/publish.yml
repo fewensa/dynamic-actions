@@ -22,6 +22,7 @@ jobs:
           platform: gitlab
           repository: repotea-workspace/csusb
           access_token: '${{ secrets.GITLAB_TOKEN }}'
+          ref_file: .github/ref.txt
 
       - uses: actions/setup-dotnet@v2
         with:
