@@ -170,11 +170,10 @@ jobs:
           echo 'https://${{ secrets.GITLAB_TOKEN }}@gitlab.com' >> ~/.git-credentials
 
       - name: Upload psdkext
-        working-directory: package-center
         run: |
           TIME=$(date "+%Y-%m-%d %H:%M:%S")
           COMMIT_MESSAGE="[${TIME}] Update psdkext"
-          git add . || true
+          git add psdkext || true
           git commit -m "${COMMIT_MESSAGE}" || true
           git push origin rolling
 
