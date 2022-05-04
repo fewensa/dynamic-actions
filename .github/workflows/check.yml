@@ -38,16 +38,6 @@ jobs:
   build-dylib-android:
     name: Build dylib-android
     runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        target:
-          - armeabi
-          - armeabi-v7a
-          - arm64-v8a
-          - mips
-          - mips64
-          - x86
-          - x86_64
     steps:
       - uses: actions/checkout@v2
       - uses: actions/checkout@v2
@@ -77,5 +67,12 @@ jobs:
       - name: Build psdk
         working-directory: rust/frame/external/export-jni
         run: |
-          cargo ndk -t ${{ matrix.target }} -o ./jniLibs build --release
-          tree
+          cargo ndk \
+            -t armeabi-v7a \
+            -t arm64-v8a \
+            -t x86 \
+            -t x86_64 \
+            -o ./jniLibs \
+            build --release
+          cp -r jniLibs/armeabi-v7a jniLibs/armeabi
+          tree jniLibs
