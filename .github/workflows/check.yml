@@ -152,13 +152,13 @@ jobs:
           git config --global credential.helper store
           echo 'https://${{ secrets.GITLAB_TOKEN }}@gitlab.com' >> ~/.git-credentials
 
-          git config --global user.email "osuni@protonmail.com"
+          git config --global user.email osuni@protonmail.com
           git config --global user.name fewensa
 
           git clone https://gitlab.com/prtmax/package-center
 
           cd package-center
-          git checkout -b rolling origin/rolling || true
+          git checkout -b rolling origin/rolling || (git branch rolling && git checkout rolling)
 
           mv ../psdkext ./
 
