@@ -127,7 +127,7 @@ jobs:
         run: |
           mkdir -p psdkext/ios
           mv frame/external/export-c/target/psdkextc.h psdkext/ios/
-          mv target/universal/libpsdkextc.a psdkext/ios/
+          mv target/universal/release/libpsdkextc.a psdkext/ios/
           (cd psdkext/ios && sha256sum * | tee sha256sums.txt)
           mv psdkext ${GITHUB_WORKSPACE}/
 
