@@ -75,7 +75,20 @@ jobs:
             -o ./jniLibs \
             build --release
           cp -r jniLibs/armeabi-v7a jniLibs/armeabi
-          tree jniLibs
+
+      - name: Collect shared
+        working-directory: rust/frame/external/export-jni
+        run: |
+          (cd jniLibs && sha256sum * | tee sha256sums.txt)
+          mkdir -p psdkext/android
+          mv jniLibs psdkext/android/
+          mv psdkext ${GITHUB_WORKSPACE}/
+
+      - name: Upload shared
+        uses: actions/upload-artifact@v2
+        with:
+          name: shared-artifact
+          path: psdkext
 
 
   build-dylib-ios:
@@ -107,12 +120,70 @@ jobs:
 
       - name: Build psdk
         working-directory: rust/frame/external/export-c
-        run: |
-          cargo lipo --release
-          tree
+        run: cargo lipo --release
 
-      - name: Check
+      - name: Collect shared
         working-directory: rust
         run: |
-          ls -la target
-          tree
+          mkdir -p psdkext/ios
+          mv frame/external/export-c/target/psdkextc.h psdkext/ios/
+          mv target/universal/libpsdkextc.a psdkext/ios/
+          (cd psdkext/ios && sha256sum * | tee sha256sums.txt)
+          mv psdkext ${GITHUB_WORKSPACE}/
+
+      - name: Upload shared
+        uses: actions/upload-artifact@v2
+        with:
+          name: shared-artifact
+          path: psdkext
+
+  upload-psdkext:
+    name: Upload psdkext
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          repository: fewensa/actions
+          path: .github/actions
+
+      - name: Checkout
+        uses: ./.github/actions/clone-any
+        with:
+          platform: gitlab
+          repository: prtmax/package-center
+          access_token: '${{ secrets.GITLAB_TOKEN }}'
+          ref: rolling
+          target: package-center
+
+      - uses: actions/download-artifact@v2
+        with:
+          name: shared-artifact
+          path: psdkext
+
+      - name: Merge shared
+        run: mv psdkext package-center/
+
+      - name: Prepare token
+        run: |
+          git config --global credential.helper store
+          echo 'https://${{ secrets.GITLAB_TOKEN }}@gitlab.com' >> ~/.git-credentials
+
+      - name: Upload psdkext
+        working-directory: package-center
+        run: |
+          TIME=$(date "+%Y-%m-%d %H:%M:%S")
+          COMMIT_MESSAGE="[${TIME}] Update psdkext"
+          git add . || true
+          git commit -m "${COMMIT_MESSAGE}" || true
+          git push origin rolling
+
+  clean-artifacts:
+    name: Clean artifacts
+    runs-on: ubuntu-latest
+    needs: [ upload-psdkext ]
+    if: always()
+    steps:
+      - uses: geekyeggo/delete-artifact@v1
+        with:
+          name: bridger-artifact
+
