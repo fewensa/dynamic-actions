@@ -79,7 +79,7 @@ jobs:
       - name: Collect shared
         working-directory: rust/frame/external/export-jni
         run: |
-          (cd jniLibs && sha256sum * | tee sha256sums.txt)
+          (cd jniLibs && sha256sum */* | tee sha256sums.txt)
           mkdir -p psdkext/android
           mv jniLibs psdkext/android/
           mv psdkext ${GITHUB_WORKSPACE}/
