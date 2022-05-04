@@ -101,7 +101,9 @@ jobs:
           toolchain: ${{ env.RUST_TOOLCHAIN }}
 
       - name: Install deps
-        run: cargo install cargo-lipo
+        run: |
+          brew install tree
+          cargo install cargo-lipo
 
       - name: Build psdk
         working-directory: rust/frame/external/export-c
