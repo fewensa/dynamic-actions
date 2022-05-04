@@ -112,4 +112,7 @@ jobs:
           tree
 
       - name: Check
-        run: ls -la target
+        working-directory: rust
+        run: |
+          ls -la target
+          tree
