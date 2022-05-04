@@ -24,7 +24,7 @@ jobs:
         uses: ./.github/actions/clone-any
         with:
           platform: gitlab
-          repository: repotea-workspace/csusb
+          repository: prtmax/psdk
           access_token: '${{ secrets.GITLAB_TOKEN }}'
           ref_file: .github/ref.txt
 
