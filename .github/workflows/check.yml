@@ -1,0 +1,39 @@
+name: '[psdk] Check'
+
+on:
+  push:
+    branches:
+      - '**'
+
+env:
+  RUST_TOOLCHAIN: stable
+
+jobs:
+  check-rust:
+    name: Build psdk-rust
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+
+      - uses: actions/checkout@v2
+        with:
+          repository: fewensa/actions
+          path: .github/actions
+
+      - name: Checkout
+        uses: ./.github/actions/clone-any
+        with:
+          platform: gitlab
+          repository: repotea-workspace/csusb
+          access_token: '${{ secrets.GITLAB_TOKEN }}'
+          ref_file: .github/ref.txt
+
+      - name: Install rust toolchain
+        uses: actions-rs/toolchain@v1
+        with:
+          toolchain: ${{ env.RUST_TOOLCHAIN }}
+
+      - name: Build psdk
+        working-directory: rust
+        run: cargo build
+
