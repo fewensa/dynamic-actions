@@ -65,7 +65,7 @@ jobs:
         run: cargo install cargo-ndk
 
       - name: Build psdk
-        working-directory: rust/frame/external/export-jni
+        working-directory: rust/frame/extension/export-jni
         run: |
           cargo ndk \
             -t armeabi-v7a \
@@ -77,7 +77,7 @@ jobs:
           cp -r jniLibs/armeabi-v7a jniLibs/armeabi
 
       - name: Collect shared
-        working-directory: rust/frame/external/export-jni
+        working-directory: rust/frame/extension/export-jni
         run: |
           (cd jniLibs && sha256sum */* | tee sha256sums.txt)
           mkdir -p psdkext/android
@@ -119,14 +119,14 @@ jobs:
           cargo install cargo-lipo
 
       - name: Build psdk
-        working-directory: rust/frame/external/export-c
+        working-directory: rust/frame/extension/export-c
         run: cargo lipo --release
 
       - name: Collect shared
         working-directory: rust
         run: |
           mkdir -p psdkext/ios
-          mv frame/external/export-c/target/psdkextc.h psdkext/ios/
+          mv frame/extension/export-c/target/psdkextc.h psdkext/ios/
           mv target/universal/release/libpsdkextc.a psdkext/ios/
           (cd psdkext/ios && sha256sum * | tee sha256sums.txt)
           mv psdkext ${GITHUB_WORKSPACE}/
