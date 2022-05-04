@@ -171,6 +171,7 @@ jobs:
 
       - name: Upload psdkext
         run: |
+          ls -la
           TIME=$(date "+%Y-%m-%d %H:%M:%S")
           COMMIT_MESSAGE="[${TIME}] Update psdkext"
           git add psdkext || true
