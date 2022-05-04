@@ -140,6 +140,7 @@ jobs:
   upload-psdkext:
     name: Upload psdkext
     runs-on: ubuntu-latest
+    needs: [ build-dylib-android, build-dylib-ios ]
     steps:
       - uses: actions/checkout@v2
         with:
