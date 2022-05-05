@@ -120,7 +120,7 @@ jobs:
 
       - name: Build psdk
         working-directory: rust/frame/extension/export-c
-        run: cargo lipo --release
+        run: cargo lipo --release --target aarch64-apple-ios
 
       - name: Collect shared
         working-directory: rust
