@@ -9,8 +9,9 @@ jobs:
   check-desktop:
     name: Build shiprinter for ${{ matrix.os }}
     runs-on: ${{ matrix.os }}-latest
-    matrix:
-      os: [windows, macos, ubuntu]
+    strategy:
+      matrix:
+        os: [windows, macos, ubuntu]
     steps:
       - uses: actions/checkout@v2
 
