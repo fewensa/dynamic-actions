@@ -49,8 +49,13 @@ jobs:
 
       - name: Try build for ${{ matrix.os }}
         run: |
+          OS=${{ matrix.os }}
           flutter pub get
-          flutter build ${{ matrix.os }} --release
+          if [ "${OS}" == "ubuntu" ]; then
+            flutter build linux --release
+          else
+            flutter build ${{ matrix.os }} --release
+          fi
 
   check-android:
     name: Build shiprinter for android
