@@ -59,6 +59,15 @@ jobs:
         if: matrix.os == 'ubuntu'
         run: flutter build linux --release
 
+      - name: Check dist for windows/macos
+        if: matrix.os != 'ubuntu'
+        run: ls -la build/${{ matrix.os }}/runner/release
+
+      - name: Check dist for ubuntu
+        if: matrix.os != 'ubuntu'
+        run: ls -la build/linux/runner/release
+
+
   check-android:
     name: Build shiprinter for android
     runs-on: ubuntu-latest
@@ -110,3 +119,5 @@ jobs:
           flutter pub get
           flutter build apk --release
 
+      - name: Check dist for android
+        run: ls -la build/app/outputs/apk/release
