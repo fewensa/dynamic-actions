@@ -116,6 +116,7 @@ jobs:
       - name: Install deps
         run: |
           brew install tree
+          brew install coreutils
           cargo install cargo-lipo
 
       - name: Build psdk
