@@ -1,0 +1,97 @@
+name: '[shiprinter] Check'
+
+on:
+  push:
+    branches:
+      - '**'
+
+jobs:
+  check-desktop:
+    name: Build shiprinter for ${{ matrix.os }}
+    runs-on: ${{ matrix.os }}-latest
+    matrix:
+      os: [windows, macos, ubuntu]
+    steps:
+      - uses: actions/checkout@v2
+
+      - uses: actions/checkout@v2
+        with:
+          repository: fewensa/actions
+          path: .github/actions
+
+      - name: Checkout
+        uses: ./.github/actions/clone-any
+        with:
+          platform: gitlab
+          repository: repotea-workspace/shiprinter
+          access_token: '${{ secrets.GITLAB_TOKEN }}'
+          ref_file: .github/ref.txt
+
+      - uses: subosito/flutter-action@v2
+        with:
+          channel: stable
+
+      - name: Setup platform
+        run: flutter config --enable-${{ matrix.os }}-desktop
+
+      - name: Prepare scripts
+        run: |
+          git config --global credential.helper store
+          echo 'https://${{ secrets.GITLAB_TOKEN }}@gitlab.com' >> ~/.git-credentials
+          sh -f scripts/prepare-publish.sh
+
+      - name: Try build for ${{ matrix.os }}
+        run: |
+          flutter pub get
+          flutter build ${{ matrix.os }} --release
+
+  check-android:
+    name: Build shiprinter for android
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+
+      - uses: actions/checkout@v2
+        with:
+          repository: fewensa/actions
+          path: .github/actions
+
+      - name: Checkout
+        uses: ./.github/actions/clone-any
+        with:
+          platform: gitlab
+          repository: repotea-workspace/shiprinter
+          access_token: '${{ secrets.GITLAB_TOKEN }}'
+          ref_file: .github/ref.txt
+
+      - name: Generate android sign config file
+        uses: ./.github/actions/gen-android-sign
+        with:
+          path: android/key.properties
+          signingKeyBase64: ${{ secrets.SHIPRINTER_JKS }}
+          alias: ${{ secrets.SHIPRINTER_KEY_ALIAS }}
+          keyStorePassword: ${{ secrets.SHIPRINTER_STORE_PASSWORD }}
+          keyPassword: ${{ secrets.SHIPRINTER_KEY_PASSWORD }}
+
+      - uses: subosito/flutter-action@v2
+        with:
+          channel: stable
+
+      - uses: actions/setup-java@v2
+        with:
+          distribution: zulu
+          java-version: 11
+
+      - name: Setup Android SDK
+        uses: android-actions/setup-android@v2
+
+      - name: Prepare scripts
+        run: |
+          git config --global credential.helper store
+          echo 'https://${{ secrets.GITLAB_TOKEN }}@gitlab.com' >> ~/.git-credentials
+          sh -f scripts/prepare-publish.sh
+
+      - name: Try build for android
+        run: |
+          flutter pub get
+          flutter build apk --release
