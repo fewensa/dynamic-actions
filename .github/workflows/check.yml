@@ -33,7 +33,13 @@ jobs:
           channel: stable
 
       - name: Setup platform
-        run: flutter config --enable-${{ matrix.os }}-desktop
+        run: |
+          OS=${{ matrix.os }}
+          if [ "${OS}" == "ubuntu" ]; then
+            flutter config --enable-linux-desktop
+          else
+            flutter config --enable-${{ matrix.os }}-desktop
+          fi
 
       - name: Prepare scripts
         run: |
