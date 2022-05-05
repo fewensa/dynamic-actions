@@ -27,13 +27,14 @@ jobs:
 
       - uses: actions/setup-dotnet@v2
         with:
-          dotnet-version: '3.1.x'
+          dotnet-version: '5.0.x'
 
       - name: Build csusb
         run: |
           dotnet publish `
             -c Release `
             -r win-x86 `
+            -p:TargetFramework=net5.0 `
             -p:PublishSingleFile=true `
             -p:PublishTrimmed=true `
             -p:PublishReadyToRun=true `
@@ -47,7 +48,7 @@ jobs:
       - name: Collect shared
         run: |
           mkdir -p shared
-          cp csusb/bin/Release/netcoreapp3.1/win-x86/publish/csusb.exe shared/
+          cp csusb/bin/Release/net5.0/win-x86/publish/csusb.exe shared/
 
       - name: Upload shared
         uses: actions/upload-artifact@v2

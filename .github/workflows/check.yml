@@ -27,13 +27,14 @@ jobs:
 
       - uses: actions/setup-dotnet@v2
         with:
-          dotnet-version: '3.1.x'
+          dotnet-version: '5.0.x'
 
       - name: Build csusb
         run: |
           dotnet publish `
             -c Release `
             -r win-x86 `
+            -p:TargetFramework=net5.0 `
             -p:PublishSingleFile=true `
             -p:PublishTrimmed=true `
             -p:PublishReadyToRun=true `
@@ -42,4 +43,4 @@ jobs:
             --self-contained true
 
       - name: Check build
-        run: ls csusb/bin/Release/netcoreapp3.1/win-x86/publish/
+        run: ls csusb/bin/Release/net5.0/win-x86/publish/
