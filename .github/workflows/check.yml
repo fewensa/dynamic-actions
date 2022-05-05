@@ -64,7 +64,7 @@ jobs:
         run: ls -la build/${{ matrix.os }}/runner/release
 
       - name: Check dist for ubuntu
-        if: matrix.os != 'ubuntu'
+        if: matrix.os == 'ubuntu'
         run: ls -la build/linux/runner/release
 
 
