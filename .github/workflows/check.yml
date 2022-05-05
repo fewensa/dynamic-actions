@@ -59,8 +59,20 @@ jobs:
         if: matrix.os == 'ubuntu'
         run: flutter build linux --release
 
-      - name: Check dist for windows/macos
-        run: tree build
+      - name: Check dist for windows
+        if: matrix.os == 'ubuntu'
+        run: ls build/windows/runner/Release
+
+      - name: Check dist for ubuntu
+        if: matrix.os == 'ubuntu'
+        run: ls build/linux/x64/release/bundle
+
+      - name: Check dist for macos
+        if: matrix.os == 'macos'
+        run: |
+          brew install tree
+          brew install coreutils
+          tree build
 
 
   check-android:
