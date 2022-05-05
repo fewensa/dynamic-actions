@@ -42,7 +42,7 @@ jobs:
         run: flutter config --enable-${{ matrix.os }}-desktop
 
       - name: Setup platform for ubuntu
-        if: matrix.os -= 'ubuntu'
+        if: matrix.os == 'ubuntu'
         run: flutter config --enable-linux-desktop
 
       - name: Prepare scripts
@@ -56,7 +56,7 @@ jobs:
         run: flutter build ${{ matrix.os }} --release
 
       - name: Try build for ubuntu
-        if: matrix.os != 'ubuntu'
+        if: matrix.os == 'ubuntu'
         run: flutter build linux --release
 
   check-android:
