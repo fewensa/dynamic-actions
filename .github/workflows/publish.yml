@@ -43,7 +43,7 @@ jobs:
             --self-contained true
 
       - name: Check build
-        run: ls csusb/bin/Release/netcoreapp3.1/win-x86/publish/
+        run: ls csusb/bin/Release/net5.0/win-x86/publish/
 
       - name: Collect shared
         run: |
