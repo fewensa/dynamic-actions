@@ -145,8 +145,7 @@ jobs:
           flutter pub get
           flutter build apk --release
 
-      - name: Collect shared for windows
-        if: matrix.os == 'windows'
+      - name: Collect shared for android
         run: |
           mkdir -p shared
           mv build/app/outputs/apk/release/app-release.apk shared/shiprinter.apk
