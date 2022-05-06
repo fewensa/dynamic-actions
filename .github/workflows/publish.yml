@@ -73,8 +73,8 @@ jobs:
       - name: Collect shared for ubuntu
         if: matrix.os == 'ubuntu'
         run: |
-          apt update -y
-          apt install -y zip
+          sudo apt update -y
+          sudo apt install -y zip
           mv build/linux/x64/release/bundle shiprinter
           mkdir -p shared
           zip -jr \
