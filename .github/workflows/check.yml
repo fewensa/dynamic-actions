@@ -11,7 +11,10 @@ jobs:
     runs-on: ${{ matrix.os }}-latest
     strategy:
       matrix:
-        os: [windows, ubuntu] # macos,
+        os:
+          - windows
+          - ubuntu
+          - macos
     steps:
       - uses: actions/checkout@v2
 
@@ -101,10 +104,6 @@ jobs:
           alias: ${{ secrets.SHIPRINTER_KEY_ALIAS }}
           keyStorePassword: ${{ secrets.SHIPRINTER_STORE_PASSWORD }}
           keyPassword: ${{ secrets.SHIPRINTER_KEY_PASSWORD }}
-
-      - name: Check s
-        run: cat android/key.properties
-
 
       - uses: subosito/flutter-action@v2
         with:
