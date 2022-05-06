@@ -60,7 +60,7 @@ jobs:
         run: flutter build linux --release
 
       - name: Check dist for windows
-        if: matrix.os == 'ubuntu'
+        if: matrix.os == 'windows'
         run: ls build/windows/runner/Release
 
       - name: Check dist for ubuntu
@@ -73,7 +73,6 @@ jobs:
           brew install tree
           brew install coreutils
           tree build
-
 
   check-android:
     name: Build shiprinter for android
