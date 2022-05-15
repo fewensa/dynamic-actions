@@ -166,13 +166,15 @@ jobs:
         working-directory: rust
         run: |
           mkdir -p psdk/ios
-          cp -r swift/fruits/esc/target/esc.framework ./psdk/ios/
-          cp -r swift/fruits/cpcl/target/cpcl.framework ./psdk/ios/
-          cp -r swift/fruits/tspl/target/tspl.framework ./psdk/ios/
+          pwd
+          ls swift/fruits/esc/target/
+          mv swift/fruits/esc/target/esc.framework ./psdk/ios/
+          mv swift/fruits/cpcl/target/cpcl.framework ./psdk/ios/
+          mv swift/fruits/tspl/target/tspl.framework ./psdk/ios/
 
-          cp -r swift/fruits/esc/target/father.framework ./psdk/ios/
-          cp -r swift/fruits/esc/target/toolkit.framework ./psdk/ios/
-          cp -r swift/fruits/esc/target/adapter.framework ./psdk/ios/
+          mv swift/fruits/esc/target/father.framework ./psdk/ios/
+          mv swift/fruits/esc/target/toolkit.framework ./psdk/ios/
+          mv swift/fruits/esc/target/adapter.framework ./psdk/ios/
 
       - name: Upload shared
         uses: actions/upload-artifact@v2
