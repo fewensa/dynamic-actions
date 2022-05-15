@@ -170,8 +170,7 @@ jobs:
           COMMIT_MESSAGE="[${TIME}] Update psdkext"
           git add psdkext || true
           git commit -m "${COMMIT_MESSAGE}" || true
-          # git push -f origin rolling
-          git push origin rolling
+          git push -f origin rolling
 
   clean-artifacts:
     name: Clean artifacts
