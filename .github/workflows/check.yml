@@ -80,7 +80,7 @@ jobs:
         working-directory: rust/frame/extension/export-jni
         run: |
           mkdir -p shared/psdkext/android
-          zip -jr jnilibs.zip jniLibs
+          zip -r jnilibs.zip jniLibs
           mv jnilibs.zip shared/psdkext/android/
           mv shared ${GITHUB_WORKSPACE}/
 
