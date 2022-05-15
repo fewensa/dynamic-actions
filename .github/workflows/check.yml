@@ -165,13 +165,7 @@ jobs:
       - name: Collect shared
         run: |
           mkdir -p psdk/ios
-          mv swift/fruits/esc/target/esc.framework ./psdk/ios/
-          mv swift/fruits/cpcl/target/cpcl.framework ./psdk/ios/
-          mv swift/fruits/tspl/target/tspl.framework ./psdk/ios/
-
-          mv swift/fruits/esc/target/father.framework ./psdk/ios/
-          mv swift/fruits/esc/target/toolkit.framework ./psdk/ios/
-          mv swift/fruits/esc/target/adapter.framework ./psdk/ios/
+          cp -r swift/fruits/*/target/*.framework ./psdk/ios/
 
       - name: Upload shared
         uses: actions/upload-artifact@v2
