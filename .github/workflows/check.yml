@@ -163,11 +163,8 @@ jobs:
         run: swift/scripts/build-framework.sh
 
       - name: Collect shared
-        working-directory: rust
         run: |
           mkdir -p psdk/ios
-          pwd
-          ls swift/fruits/esc/target/
           mv swift/fruits/esc/target/esc.framework ./psdk/ios/
           mv swift/fruits/cpcl/target/cpcl.framework ./psdk/ios/
           mv swift/fruits/tspl/target/tspl.framework ./psdk/ios/
