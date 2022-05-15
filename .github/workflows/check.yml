@@ -155,6 +155,10 @@ jobs:
           access_token: '${{ secrets.GITLAB_TOKEN }}'
           ref_file: .github/ref.txt
 
+      - name: Install dependencies
+        run: |
+          brew install p7zip
+
       - uses: swift-actions/setup-swift@v1
         with:
           swift-version: '5.5'
@@ -166,6 +170,15 @@ jobs:
         run: |
           mkdir -p shared/psdk/ios
           cp -r swift/fruits/*/target/*.framework ./shared/psdk/ios/
+
+      - name: Prepare framework
+        run: |
+          cd shared/psdk/ios
+          for F in $(ls); do
+            7z a -tzip ${F}.zip ./${F}
+            rm -rf ${F}
+          done
+          sha256sum * | tee sha256sums.txt
 
       - name: Upload shared
         uses: actions/upload-artifact@v2
