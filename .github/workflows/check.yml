@@ -126,11 +126,20 @@ jobs:
       - name: Collect shared
         working-directory: rust
         run: |
-          mkdir -p shared/psdkext/ios
-          mv frame/extension/export-c/target/psdkextc.h shared/psdkext/ios/
-          mv target/universal/release/libpsdkextc.a shared/psdkext/ios/
+          mkdir -p shared/psdkext/psdkext
+          mv frame/extension/export-c/target/psdkextc.h shared/psdkext/psdkext/
+          mv target/universal/release/libpsdkextc.a shared/psdkext/psdkext/
           (cd shared/psdkext/ios && sha256sum * | tee sha256sums.txt)
           mv shared ${GITHUB_WORKSPACE}/
+
+      - name: Prepare lib
+        run: |
+          cd shared/psdkext/
+          7z a -tzip psdkext.zip ./psdkext
+          rm -rf psdkext
+          mkdir ios
+          mv psdkext.zip ./ios
+          (cd ./ios && sha256sum * | tee sha256sums.txt)
 
       - name: Upload shared
         uses: actions/upload-artifact@v2
@@ -158,6 +167,7 @@ jobs:
       - name: Install dependencies
         run: |
           brew install p7zip
+          brew install coreutils
 
       - uses: swift-actions/setup-swift@v1
         with:
