@@ -159,8 +159,10 @@ jobs:
           git clone https://gitlab.com/prtmax/package-center
 
           cd package-center
-          git checkout -b rolling origin/rolling || (git branch rolling && git checkout rolling)
-          git reset --hard 6a12c9e
+          git push origin :rolling || true
+          git branch rolling
+          # git checkout -b rolling origin/rolling || (git branch rolling && git checkout rolling)
+          # git reset --hard 6a12c9e
 
           mv ../psdkext ./
 
@@ -168,7 +170,8 @@ jobs:
           COMMIT_MESSAGE="[${TIME}] Update psdkext"
           git add psdkext || true
           git commit -m "${COMMIT_MESSAGE}" || true
-          git push -f origin rolling
+          # git push -f origin rolling
+          git push origin rolling
 
   clean-artifacts:
     name: Clean artifacts
