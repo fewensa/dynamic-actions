@@ -203,10 +203,10 @@ jobs:
           # git checkout -b rolling origin/rolling || (git branch rolling && git checkout rolling)
           # git reset --hard 6a12c9e
 
-          ls shared
+          ls ../shared
 
-          mv ../psdkext ./
-          mv ../psdk ./
+          mv ../shared/psdkext ./
+          mv ../shared/psdk ./
 
           TIME=$(date "+%Y-%m-%d %H:%M:%S")
           COMMIT_MESSAGE="[${TIME}] Update psdkext"
