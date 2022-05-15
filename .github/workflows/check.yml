@@ -198,7 +198,7 @@ jobs:
           cd package-center
           git push origin :rolling || true
           git branch rolling
-          git chekcout rolling
+          git checkout rolling
           # git checkout -b rolling origin/rolling || (git branch rolling && git checkout rolling)
           # git reset --hard 6a12c9e
 
