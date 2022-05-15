@@ -80,15 +80,15 @@ jobs:
         working-directory: rust/frame/extension/export-jni
         run: |
           (cd jniLibs && sha256sum */* | tee sha256sums.txt)
-          mkdir -p psdkext/android
-          mv jniLibs psdkext/android/
-          mv psdkext ${GITHUB_WORKSPACE}/
+          mkdir -p shared/psdkext/android
+          mv jniLibs shared/psdkext/android/
+          mv shared ${GITHUB_WORKSPACE}/
 
       - name: Upload shared
         uses: actions/upload-artifact@v2
         with:
           name: shared-artifact
-          path: psdkext
+          path: shared
 
 
   build-dylib-ios:
@@ -126,17 +126,17 @@ jobs:
       - name: Collect shared
         working-directory: rust
         run: |
-          mkdir -p psdkext/ios
-          mv frame/extension/export-c/target/psdkextc.h psdkext/ios/
-          mv target/universal/release/libpsdkextc.a psdkext/ios/
-          (cd psdkext/ios && sha256sum * | tee sha256sums.txt)
-          mv psdkext ${GITHUB_WORKSPACE}/
+          mkdir -p shared/psdkext/ios
+          mv frame/extension/export-c/target/psdkextc.h shared/psdkext/ios/
+          mv target/universal/release/libpsdkextc.a shared/psdkext/ios/
+          (cd shared/psdkext/ios && sha256sum * | tee sha256sums.txt)
+          mv shared ${GITHUB_WORKSPACE}/
 
       - name: Upload shared
         uses: actions/upload-artifact@v2
         with:
           name: shared-artifact
-          path: psdkext
+          path: shared
 
   build-swift-framework:
     name: Build swift-framework
@@ -164,14 +164,14 @@ jobs:
 
       - name: Collect shared
         run: |
-          mkdir -p psdk/ios
-          cp -r swift/fruits/*/target/*.framework ./psdk/ios/
+          mkdir -p shared/psdk/ios
+          cp -r swift/fruits/*/target/*.framework ./shared/psdk/ios/
 
       - name: Upload shared
         uses: actions/upload-artifact@v2
         with:
           name: shared-artifact
-          path: psdk
+          path: shared
 
   upload-psdkext:
     name: Upload psdkext
@@ -184,9 +184,7 @@ jobs:
       - uses: actions/download-artifact@v2
         with:
           name: shared-artifact
-          path: |
-            psdkext
-            psdk
+          path: shared
 
       - name: Upload psdkext
         run: |
@@ -205,8 +203,8 @@ jobs:
           # git checkout -b rolling origin/rolling || (git branch rolling && git checkout rolling)
           # git reset --hard 6a12c9e
 
-          mv ../psdkext ./
-          mv ../psdk ./
+          mv ../shared/psdkext ./
+          mv ../shared/psdk ./
 
           TIME=$(date "+%Y-%m-%d %H:%M:%S")
           COMMIT_MESSAGE="[${TIME}] Update psdkext"
@@ -215,13 +213,13 @@ jobs:
           git commit -m "${COMMIT_MESSAGE}" || true
           git push -f origin rolling
 
-  clean-artifacts:
-    name: Clean artifacts
-    runs-on: ubuntu-latest
-    needs: [ upload-psdkext ]
-    if: always()
-    steps:
-      - uses: geekyeggo/delete-artifact@v1
-        with:
-          name: bridger-artifact
+#  clean-artifacts:
+#    name: Clean artifacts
+#    runs-on: ubuntu-latest
+#    needs: [ upload-psdkext ]
+#    if: always()
+#    steps:
+#      - uses: geekyeggo/delete-artifact@v1
+#        with:
+#          name: shared-artifact
 
