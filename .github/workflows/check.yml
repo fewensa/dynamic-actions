@@ -205,8 +205,6 @@ jobs:
           # git checkout -b rolling origin/rolling || (git branch rolling && git checkout rolling)
           # git reset --hard 6a12c9e
 
-          ls ../shared
-
           mv ../psdkext ./
           mv ../psdk ./
 
