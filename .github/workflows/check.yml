@@ -4,9 +4,8 @@ on:
   push:
     branches:
       - '**'
-
 env:
-  FLUTTER_VERSION: ''
+  FLUTTER_VERSION: '2.x'
 
 jobs:
   build-desktop:
