@@ -6,7 +6,7 @@ on:
       - '**'
 
 env:
-  FLUTTER_VERSION: '2.x'
+  FLUTTER_VERSION: ''
 
 jobs:
   build-desktop:
@@ -36,7 +36,7 @@ jobs:
 
       - uses: subosito/flutter-action@v2
         with:
-          flutter-version: ${env.FLUTTER_VERSION}
+          flutter-version: ${{ env.FLUTTER_VERSION }}
           channel: stable
 
       - name: Setup dependencies
@@ -112,7 +112,7 @@ jobs:
 
       - uses: subosito/flutter-action@v2
         with:
-          flutter-version: ${env.FLUTTER_VERSION}
+          flutter-version: ${{ env.FLUTTER_VERSION }}
           channel: stable
 
       - uses: actions/setup-java@v2
