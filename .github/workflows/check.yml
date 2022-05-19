@@ -161,7 +161,7 @@ jobs:
         run: |
           (cd shared/psdkext/android && sha256sum * | tee sha256sums.txt)
           (cd shared/psdkext/ios && sha256sum * | tee sha256sums.txt)
-          (cd shared/psdk/ios && sha256sum * | tee sha256sums.txt)
+          # (cd shared/psdk/ios && sha256sum * | tee sha256sums.txt)
 
       - name: Upload psdkext
         run: |
