@@ -1,1 +1,1 @@
-basic-jsjcz
+basic-java_command
