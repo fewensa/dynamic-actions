@@ -1,1 +1,1 @@
-basic-java_command
+compatible-fcbox
