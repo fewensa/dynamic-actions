@@ -1,0 +1,40 @@
+name: '[shiprinter] Check chrome extension'
+
+on:
+  push:
+    branches:
+      - '**'
+
+jobs:
+  check-chrome-extension:
+    name: Check chrome extension
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+
+      - uses: actions/checkout@v2
+        with:
+          repository: fewensa/actions
+          path: .github/actions
+
+      - name: Checkout
+        uses: ./.github/actions/clone-any
+        with:
+          platform: gitlab
+          repository: repotea-workspace/shiprinter
+          access_token: '${{ secrets.GITLAB_TOKEN }}'
+          ref_file: .github/ref.txt
+
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 14
+
+      - name: Check build
+        run: |
+          cd chrome
+          npm i
+
+      - name: Check build
+        run: |
+          cd chrome
+          npm run build
