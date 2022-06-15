@@ -1,0 +1,106 @@
+name: '[paperang] Publish'
+
+on:
+  push:
+    tags:
+      - "v*"
+env:
+  FLUTTER_VERSION: '2.x'
+
+jobs:
+  build-android:
+    name: Build paperang for android
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+
+      - uses: actions/checkout@v2
+        with:
+          repository: fewensa/actions
+          path: .github/actions
+
+      - name: Checkout
+        uses: ./.github/actions/clone-any
+        with:
+          platform: gitlab
+          repository: prtmax/external-paperang
+          access_token: '${{ secrets.GITLAB_TOKEN }}'
+          ref_file: .github/ref.txt
+
+      - name: Generate android sign config file
+        uses: ./.github/actions/gen-android-sign
+        with:
+          path: android/key.properties
+          signingKeyBase64: ${{ secrets.PAPERANG_JKS }}
+          alias: ${{ secrets.PAPERANG_KEY_ALIAS }}
+          keyStorePassword: ${{ secrets.PAPERANG_STORE_PASSWORD }}
+          keyPassword: ${{ secrets.PAPERANG_KEY_PASSWORD }}
+
+      - uses: subosito/flutter-action@v2
+        with:
+          flutter-version: ${{ env.FLUTTER_VERSION }}
+          channel: stable
+
+      - uses: actions/setup-java@v2
+        with:
+          distribution: zulu
+          java-version: 11
+
+      - name: Setup Android SDK
+        uses: android-actions/setup-android@v2
+
+      - name: Prepare scripts
+        run: |
+          git config --global credential.helper store
+          echo 'https://${{ secrets.GITLAB_TOKEN }}@gitlab.com' >> ~/.git-credentials
+
+      - name: Try build for android
+        run: |
+          flutter pub get
+          flutter build apk --release
+
+      - name: Collect shared for android
+        run: |
+          mkdir -p shared
+          mv build/app/outputs/apk/release/app-release.apk shared/paperang.apk
+
+      - name: Upload shared
+        uses: actions/upload-artifact@v2
+        with:
+          name: shared-artifact
+          path: shared
+
+
+  publish-paperang:
+    name: Publish paperang
+    runs-on: ubuntu-latest
+    needs: [ build-android ]
+    steps:
+      - uses: actions/download-artifact@v2
+        with:
+          name: shared-artifact
+          path: shared
+
+      - name: Hash file
+        run: |
+          (cd shared && sha256sum * | tee sha256sums.txt)
+
+      - name: Publish github release
+        uses: softprops/action-gh-release@v1
+        with:
+          files: |
+            shared/*
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+  clean-artifacts:
+    name: Clean artifacts
+    runs-on: ubuntu-latest
+    needs: [ publish-paperang ]
+    if: always()
+    steps:
+      - uses: geekyeggo/delete-artifact@v1
+        with:
+          name: shared-artifact
+
+
+
