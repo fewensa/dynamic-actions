@@ -54,7 +54,7 @@ jobs:
 
       - uses: nttld/setup-ndk@v1
         with:
-          ndk-version: r24
+          ndk-version: r22
 
       - name: Install rust toolchain
         uses: actions-rs/toolchain@v1
@@ -62,7 +62,9 @@ jobs:
           toolchain: ${{ env.RUST_TOOLCHAIN }}
 
       - name: Install deps
-        run: cargo install cargo-ndk
+        run: |
+          # cargo install cargo-ndk
+          cargo install cargo-ndk --version 2.6.0
 
       - name: Build psdk
         working-directory: rust/frame/extension/export-jni
