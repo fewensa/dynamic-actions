@@ -54,7 +54,7 @@ jobs:
 
       - uses: nttld/setup-ndk@v1
         with:
-          ndk-version: r21e
+          ndk-version: r23c
 
       - name: Install rust toolchain
         uses: actions-rs/toolchain@v1
