@@ -25,11 +25,6 @@ jobs:
           access_token: '${{ secrets.GITLAB_TOKEN }}'
           ref_file: .github/ref.txt
 
-      - name: Install dependencies
-        run: |
-          apt update -y
-          apt install --no-install-recommends -y  zip
-
       - uses: actions/setup-node@v3
         with:
           node-version: 14
