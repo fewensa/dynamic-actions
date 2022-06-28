@@ -1,0 +1,54 @@
+name: '[shiprinter] Check chrome extension'
+
+on:
+  push:
+    tags:
+      - "v*"
+
+jobs:
+  check-chrome-extension:
+    name: Check chrome extension
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+
+      - uses: actions/checkout@v2
+        with:
+          repository: fewensa/actions
+          path: .github/actions
+
+      - name: Checkout
+        uses: ./.github/actions/clone-any
+        with:
+          platform: gitlab
+          repository: repotea-workspace/shiprinter
+          access_token: '${{ secrets.GITLAB_TOKEN }}'
+          ref_file: .github/ref.txt
+
+      - name: Install dependencies
+        run: |
+          apt update -y
+          apt install --no-install-recommends -y  zip
+
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 14
+
+      - name: Install deps
+        run: |
+          cd chrome
+          npm i
+
+      - name: Check build
+        run: |
+          cd chrome
+          npm run build
+          zip -jr dist.zip dist
+
+      - name: Publish
+        uses: mnao305/chrome-extension-upload@2.2.0
+        with:
+          file-path: chrome/dist.zip
+          extension-id: pbnnbmkdlmmpdadgaflbdaomdimphcjn
+          client-id: ${{ secrets.SHIPRINTER_CHROME_EXT_CLIENT_ID }}
+          refresh-token: ${{ secrets.SHIPRINTER_CHROME_EXT_REFRESH_TOKEN }}
