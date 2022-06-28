@@ -108,10 +108,10 @@ jobs:
         uses: ./.github/actions/gen-android-sign
         with:
           path: professional/android/key.properties
-          signingKeyBase64: ${{ secrets.SHIPRINTER_JKS }}
-          alias: ${{ secrets.SHIPRINTER_KEY_ALIAS }}
-          keyStorePassword: ${{ secrets.SHIPRINTER_STORE_PASSWORD }}
-          keyPassword: ${{ secrets.SHIPRINTER_KEY_PASSWORD }}
+          signingKeyBase64: ${{ secrets.SHIPRINTER_PRO_JKS }}
+          alias: ${{ secrets.SHIPRINTER_PRO_KEY_ALIAS }}
+          keyStorePassword: ${{ secrets.SHIPRINTER_PRO_STORE_PASSWORD }}
+          keyPassword: ${{ secrets.SHIPRINTER_PRO_KEY_PASSWORD }}
 
       - uses: subosito/flutter-action@v2
         with:
