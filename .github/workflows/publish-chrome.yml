@@ -1,4 +1,4 @@
-name: '[shiprinter] Check chrome extension'
+name: '[shiprinter] Publish chrome extension'
 
 on:
   push:
@@ -34,7 +34,7 @@ jobs:
           cd chrome
           npm i
 
-      - name: Check build
+      - name: Build
         run: |
           cd chrome
           npm run build
