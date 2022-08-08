@@ -1,1 +1,1 @@
-release-js
+compatible-legacy
