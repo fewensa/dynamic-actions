@@ -1,1 +1,1 @@
-basic-swift
+compatible-legacy
