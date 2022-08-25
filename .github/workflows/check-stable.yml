@@ -5,7 +5,7 @@ on:
     branches:
       - '**'
 env:
-  FLUTTER_VERSION: '2.x'
+  FLUTTER_VERSION: '3.x'
 
 jobs:
   build-android:
