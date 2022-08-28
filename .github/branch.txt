@@ -1,1 +1,1 @@
-shiprinter_auto
+master
