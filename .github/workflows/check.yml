@@ -67,8 +67,8 @@ jobs:
           # https://github.com/bbqsrc/cargo-ndk/issues/22
           # https://github.com/effektio/effektio/pull/113#issuecomment-1155759948
           # https://github.com/rust-lang/rust/pull/85806
-          cargo install cargo-ndk
-          # cargo install cargo-ndk --version 2.6.0
+          # cargo install cargo-ndk
+          cargo install cargo-ndk --version 2.6.0
 
       - name: Build psdk
         working-directory: rust/frame/extension/export-jni
