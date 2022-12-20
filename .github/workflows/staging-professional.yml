@@ -266,7 +266,7 @@ jobs:
           echo "${TEMPLATE}" >> ${HISTORY_FILE}
           echo '---' >> ${HISTORY_FILE}
           cat ${HISTORY_FILE}.old >> ${HISTORY_FILE}
-          rm -rf ${HISTORY_FILE}
+          rm -rf ${HISTORY_FILE}.old
 
           cat ${LATEST_FILE}
 
