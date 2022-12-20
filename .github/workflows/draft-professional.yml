@@ -180,12 +180,20 @@ jobs:
         run: |
           (cd shared && sha256sum * | tee sha256sums.txt)
 
+      - uses: benjlevesque/short-sha@v2.1
+        id: short-sha
+
+      - uses: rickstaa/action-create-tag@v1
+        with:
+          tag: sha-${{ steps.short-sha.outputs.sha }}
+
       - name: Publish github release
         uses: softprops/action-gh-release@v1
         with:
           files: |
             shared/*
           token: ${{ secrets.GITHUB_TOKEN }}
+          name:
           prerelease: true
 
   update-rockbase:
@@ -205,9 +213,51 @@ jobs:
           repository: repotea-workspace/rockbase
           access_token: '${{ secrets.GITLAB_TOKEN }}'
 
+      - uses: benjlevesque/short-sha@v2.1
+        id: short-sha
+
       - name: Update data
         run: |
+          TAG=sha-${{ steps.short-sha.outputs.sha }}
+          COMMIT="$(cat .github/commit.txt)"
+          TIME="$(cat .github/date.txt)"
+          RELEASE_ARTIFACTS_BASE=${{ github.server_url }}/${{ github.repository }}/releases/download/${TAG}
+          MESSAGE="$(cat .github/message.txt)"
+          TEMPLATE="
+          ### Intro
+          - commit: ${COMMIT}
+          - message: ${MESSAGE}
+          - time: ${TIME}
 
+          ### Android
+          {% qrcode "${RELEASE_ARTIFACTS_BASE}/shiprinter-pro.apk" %}
+
+          ### Windows
+          - [Download](${RELEASE_ARTIFACTS_BASE}/shiprinter-pro-windows-x86_64.zip)
+
+          ### Linux
+          - [Download](${RELEASE_ARTIFACTS_BASE}/shiprinter-pro-linux-x86_64.zip)
+          "
+
+          LATEST_FILE=source/_data/shipro/latest.md
+          HISTORY_FILE=source/_data/shipro/history.md
+
+          echo '' > ${LATEST_FILE}
+          echo "${COMMIT}" >> ${LATEST_FILE}
+          echo "${TEMPLATE}" >> ${LATEST_FILE}
+
+          mv ${HISTORY_FILE} ${HISTORY_FILE}.old
+          echo '' > ${HISTORY_FILE}
+          echo "${TEMPLATE}" >> ${HISTORY_FILE}
+          echo '---' >> ${HISTORY_FILE}
+          cat ${HISTORY_FILE}.old >> ${HISTORY_FILE}
+          rm -rf ${HISTORY_FILE}
+
+      - name: Push rockbase
+        run: |
+          git add .
+          git commit -m 'Update shipro'
+          git push origin main
 
 
   clean-artifacts:
