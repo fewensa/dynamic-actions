@@ -157,7 +157,7 @@ jobs:
       - name: Collect shared for android
         run: |
           mkdir -p shared
-          mv professiona/build/app/outputs/flutter-apk/release/app-release.apk shared/shiprinter-pro.apk
+          mv professional/build/app/outputs/flutter-apk/release/app-release.apk shared/shiprinter-pro.apk
 
       - name: Upload shared
         uses: actions/upload-artifact@v2
@@ -186,7 +186,29 @@ jobs:
           files: |
             shared/*
           token: ${{ secrets.GITHUB_TOKEN }}
-          draft: true
+          prerelease: true
+
+  update-rockbase:
+    name: Update rockbase
+    runs-on: ubuntu-latest
+    needs: [ publish-shiprinter ]
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          repository: fewensa/actions
+          path: .github/actions
+
+      - name: Checkout
+        uses: ./.github/actions/clone-any
+        with:
+          platform: gitlab
+          repository: repotea-workspace/rockbase
+          access_token: '${{ secrets.GITLAB_TOKEN }}'
+
+      - name: Update data
+        run: |
+
+
 
   clean-artifacts:
     name: Clean artifacts
