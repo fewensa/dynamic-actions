@@ -195,7 +195,8 @@ jobs:
           files: |
             shared/*
           token: ${{ secrets.GITHUB_TOKEN }}
-          name:
+          name: sha-${{ steps.short-sha.outputs.sha }}
+          tag_name: sha-${{ steps.short-sha.outputs.sha }}
           prerelease: true
 
   update-rockbase:
@@ -225,7 +226,7 @@ jobs:
           TAG=sha-${{ steps.short-sha.outputs.sha }}
           COMMIT="$(cat .github/commit.txt)"
           TIME="$(cat .github/date.txt)"
-          RELEASE_ARTIFACTS_BASE=${{ github.server_url }}/${{ github.repository }}/releases/download/${TAG}
+          RELEASE_ARTIFACTS_BASE=https://ghproxy.com/${{ github.server_url }}/${{ github.repository }}/releases/download/${TAG}
           MESSAGE="$(cat .github/message.txt)"
           TEMPLATE="
           ### Intro
