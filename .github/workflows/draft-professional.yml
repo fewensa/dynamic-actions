@@ -150,6 +150,7 @@ jobs:
 
       - name: Try build for android
         run: |
+          cd professional
           flutter pub get
           flutter build apk --release
 
