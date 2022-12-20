@@ -243,8 +243,8 @@ jobs:
           - [Download](${RELEASE_ARTIFACTS_BASE}/shiprinter-pro-linux-x86_64.zip)
           "
 
-          LATEST_FILE=source/_template/shipro/latest.md
-          HISTORY_FILE=source/_template/shipro/history.md
+          LATEST_FILE=source/_data/shipro/latest.md
+          HISTORY_FILE=source/_data/shipro/history.md
 
           echo '' > ${LATEST_FILE}
           echo "${COMMIT}" >> ${LATEST_FILE}
