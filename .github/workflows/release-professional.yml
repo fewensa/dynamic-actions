@@ -157,7 +157,7 @@ jobs:
       - name: Collect shared for android
         run: |
           mkdir -p shared
-          mv professional/build/app/outputs/flutter-apk/release/app-release.apk shared/shiprinter-pro.apk
+          mv professional/build/app/outputs/flutter-apk/app-release.apk shared/shiprinter-pro.apk
 
       - name: Upload shared
         uses: actions/upload-artifact@v2
