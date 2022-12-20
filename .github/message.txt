@@ -1,1 +1,1 @@
-fix ci
+Update action name

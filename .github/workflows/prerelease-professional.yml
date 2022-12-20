@@ -1,4 +1,4 @@
-name: '[shiprinter] Draft release professional'
+name: '[shiprinter] Prerelease professional'
 
 on:
   push:
