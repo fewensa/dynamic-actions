@@ -276,11 +276,13 @@ jobs:
           cat ${HISTORY_FILE}.old >> ${HISTORY_FILE}
           rm -rf ${HISTORY_FILE}
 
-          echo "${TEMPLATE}"
+          cat ${LATEST_FILE}
 
       - name: Push rockbase
         run: |
           ls -la
+          git config --local user.email ${{ secrets.EMAIL_O }}
+          git config --local user.email fewensa
           git add source
           git commit -m 'Update shipro'
           git push origin main
