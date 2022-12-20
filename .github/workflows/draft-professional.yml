@@ -205,6 +205,9 @@ jobs:
     steps:
       - uses: actions/checkout@v2
 
+      - uses: benjlevesque/short-sha@v2.1
+        id: short-sha
+
       - uses: actions/checkout@v2
         with:
           repository: fewensa/actions
@@ -216,9 +219,6 @@ jobs:
           platform: gitlab
           repository: repotea-workspace/rockbase
           access_token: '${{ secrets.GITLAB_TOKEN }}'
-
-      - uses: benjlevesque/short-sha@v2.1
-        id: short-sha
 
       - name: Update data
         run: |
