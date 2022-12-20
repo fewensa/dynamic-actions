@@ -1,4 +1,4 @@
-name: '[shiprinter] Prerelease professional'
+name: '[shiprinter] Staing professional'
 
 on:
   push:
@@ -33,31 +33,31 @@ jobs:
           access_token: '${{ secrets.GITLAB_TOKEN }}'
           ref_file: .github/ref.txt
 
-      - uses: subosito/flutter-action@v2
-        with:
-          flutter-version: ${{ env.FLUTTER_VERSION }}
-          channel: stable
-
-      - name: Setup dependencies
-        if: matrix.os == 'ubuntu'
-        run: |
-          sudo apt update -y
-          sudo apt install -y clang ninja-build libgtk-3-dev
-
-      - name: Setup platform for windows/macos
-        if: matrix.os != 'ubuntu'
-        run: flutter config --enable-${{ matrix.os }}-desktop
-
-      - name: Setup platform for ubuntu
-        if: matrix.os == 'ubuntu'
-        run: flutter config --enable-linux-desktop
-
-      - name: Prepare scripts
-        run: |
-          git config --global credential.helper store
-          echo 'https://${{ secrets.GITLAB_TOKEN }}@gitlab.com' >> ~/.git-credentials
-          sh -f professional/scripts/prepare-publish.sh
-
+#      - uses: subosito/flutter-action@v2
+#        with:
+#          flutter-version: ${{ env.FLUTTER_VERSION }}
+#          channel: stable
+#
+#      - name: Setup dependencies
+#        if: matrix.os == 'ubuntu'
+#        run: |
+#          sudo apt update -y
+#          sudo apt install -y clang ninja-build libgtk-3-dev
+#
+#      - name: Setup platform for windows/macos
+#        if: matrix.os != 'ubuntu'
+#        run: flutter config --enable-${{ matrix.os }}-desktop
+#
+#      - name: Setup platform for ubuntu
+#        if: matrix.os == 'ubuntu'
+#        run: flutter config --enable-linux-desktop
+#
+#      - name: Prepare scripts
+#        run: |
+#          git config --global credential.helper store
+#          echo 'https://${{ secrets.GITLAB_TOKEN }}@gitlab.com' >> ~/.git-credentials
+#          sh -f professional/scripts/prepare-publish.sh
+#
 #      - name: Try build for windows/macos
 #        if: matrix.os != 'ubuntu'
 #        run: |
