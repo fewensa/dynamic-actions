@@ -278,6 +278,7 @@ jobs:
 
       - name: Push rockbase
         run: |
+          ls -la
           git add source
           git commit -m 'Update shipro'
           git push origin main
