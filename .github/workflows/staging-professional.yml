@@ -98,7 +98,7 @@ jobs:
         if: matrix.os == 'ubuntu'
         run: |
           mkdir -p shared
-          touch 'linux' > shared/shiprinter-pro-linux-x86_64.zip
+          echo 'linux' > shared/shiprinter-pro-linux-x86_64.zip
 
 
       - name: Check dist for macos
@@ -175,7 +175,7 @@ jobs:
       - name: Test CI a
         run: |
           mkdir -p shared
-          touch 'linux' > shared/shiprinter-pro.apk
+          echo 'linux' > shared/shiprinter-pro.apk
 
       - name: Upload shared
         uses: actions/upload-artifact@v2
