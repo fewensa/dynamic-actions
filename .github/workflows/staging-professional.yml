@@ -8,6 +8,20 @@ env:
   FLUTTER_VERSION: '3.x'
 
 jobs:
+
+  new-tag:
+    name: Create new tag
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+
+      - uses: benjlevesque/short-sha@v2.1
+        id: short-sha
+
+      - uses: rickstaa/action-create-tag@v1
+        with:
+          tag: sha-${{ steps.short-sha.outputs.sha }}
+
   build-desktop:
     name: Build shiprinter-pro for ${{ matrix.os }}
     runs-on: ${{ matrix.os }}-latest
@@ -203,10 +217,6 @@ jobs:
       - uses: benjlevesque/short-sha@v2.1
         id: short-sha
 
-      - uses: rickstaa/action-create-tag@v1
-        with:
-          tag: sha-${{ steps.short-sha.outputs.sha }}
-
       - name: Publish github release
         uses: softprops/action-gh-release@v1
         with:
@@ -282,7 +292,7 @@ jobs:
         run: |
           ls -la
           git config --local user.email ${{ secrets.EMAIL_O }}
-          git config --local user.email fewensa
+          git config --local user.name fewensa
           git add source
           git commit -m 'Update shipro'
           git push origin main
