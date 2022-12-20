@@ -276,6 +276,8 @@ jobs:
           cat ${HISTORY_FILE}.old >> ${HISTORY_FILE}
           rm -rf ${HISTORY_FILE}
 
+          echo "${TEMPLATE}"
+
       - name: Push rockbase
         run: |
           ls -la
