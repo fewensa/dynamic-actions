@@ -1,1 +1,2 @@
-add  && header.isNotEmpty 解决Cpaeg指令多了个换行问题
+esc fix newline false
+fix BinaryCommand
