@@ -1,1 +1,1 @@
-扫描预览页content 长度 重叠bug修复
+add cmd type
