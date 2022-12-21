@@ -1,1 +1,1 @@
-Publish staging
+SmartToastType.onlyRefresh
