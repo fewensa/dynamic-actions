@@ -1,15 +1,15 @@
-name: '[shiprinter] Release professional'
+name: '[shiprinter] Check professional'
 
 on:
   push:
-    tags:
-      - "v*"
+    branches:
+      - '**'
 env:
   FLUTTER_VERSION: '3.x'
 
 jobs:
   build-desktop:
-    name: Build shiprinter-pro for ${{ matrix.os }}
+    name: Build shiprinter for ${{ matrix.os }}
     runs-on: ${{ matrix.os }}-latest
     strategy:
       matrix:
@@ -70,39 +70,23 @@ jobs:
           cd professional
           flutter build linux --release
 
-      - name: Collect dist for windows
+      - name: Check dist for windows
         if: matrix.os == 'windows'
-        run: |
-          mv professional/build/windows/runner/Release shiprinter-pro
-          mkdir -p shared
-          7z a -tzip shared/shiprinter-pro-windows-x86_64.zip ./shiprinter-pro
+        run: ls professional/build/windows/runner/Release
 
-      - name: Collect shared for ubuntu
+      - name: Check dist for ubuntu
         if: matrix.os == 'ubuntu'
-        run: |
-          sudo apt update -y
-          sudo apt install -y zip
-          mv professional/build/linux/x64/release/bundle shiprinter-pro
-          mkdir -p shared
-          zip -jr \
-            shared/shiprinter-pro-linux-x86_64.zip \
-            shiprinter-pro
+        run: ls professional/build/linux/x64/release/bundle
 
       - name: Check dist for macos
         if: matrix.os == 'macos'
         run: |
           brew install tree
           brew install coreutils
-          tree build
-
-      - name: Upload shared
-        uses: actions/upload-artifact@v2
-        with:
-          name: shared-artifact
-          path: shared
+          tree professional/build
 
   build-android:
-    name: Build shiprinter-pro for android
+    name: Build shiprinter for android
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
@@ -154,48 +138,5 @@ jobs:
           flutter pub get
           flutter build apk --release
 
-      - name: Collect shared for android
-        run: |
-          mkdir -p shared
-          mv professional/build/app/outputs/flutter-apk/app-release.apk shared/shiprinter-pro.apk
-
-      - name: Upload shared
-        uses: actions/upload-artifact@v2
-        with:
-          name: shared-artifact
-          path: shared
-
-
-  publish-shiprinter:
-    name: Publish shiprinter-pro
-    runs-on: ubuntu-latest
-    needs: [ build-desktop, build-android ]
-    steps:
-      - uses: actions/download-artifact@v2
-        with:
-          name: shared-artifact
-          path: shared
-
-      - name: Hash file
-        run: |
-          (cd shared && sha256sum * | tee sha256sums.txt)
-
-      - name: Publish github release
-        uses: softprops/action-gh-release@v1
-        with:
-          files: |
-            shared/*
-          token: ${{ secrets.GITHUB_TOKEN }}
-
-  clean-artifacts:
-    name: Clean artifacts
-    runs-on: ubuntu-latest
-    needs: [ publish-shiprinter ]
-    if: always()
-    steps:
-      - uses: geekyeggo/delete-artifact@v1
-        with:
-          name: shared-artifact
-
-
-
+      - name: Check dist for android
+        run: ls -la professional/build/app/outputs/apk/release
