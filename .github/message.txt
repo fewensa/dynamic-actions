@@ -1,1 +1,1 @@
-SmartToastType.onlyRefresh
+Improve CI
