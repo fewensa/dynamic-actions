@@ -276,7 +276,7 @@ jobs:
           git config --local user.email ${{ secrets.EMAIL_O }}
           git config --local user.name fewensa
           git add source
-          git commit -m "[shipro]: [${COMMIT}] ${MESSAGE}"
+          git commit -m "[shipro]: [$(cat .github/commit.txt)] $(cat .github/message.txt)"
           git push origin main
 
 
