@@ -1,2 +1,1 @@
-esc fix newline false
-fix BinaryCommand
+esc add imagezlib
