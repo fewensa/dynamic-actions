@@ -1,1 +1,7 @@
-Code clean
+Merge branch 'fwq-0.1.0' into yjq_0.1.0
+
+# Conflicts:
+#	professional/lib/patch/i18n/en_us.dart
+#	professional/lib/views/workspace/entrypoint/logic.dart
+#	professional/lib/views/workspace/entrypoint/view.dart
+#	professional/lib/views/workspace/scan/widgets/screen_scanned.dart
