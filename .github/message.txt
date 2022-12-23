@@ -1,1 +1,1 @@
-change attribute dialog
+fix some bugs
