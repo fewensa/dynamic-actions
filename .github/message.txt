@@ -1,1 +1,1 @@
-improve js sdk
+bump v0.2.50
