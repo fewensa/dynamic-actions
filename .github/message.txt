@@ -1,1 +1,1 @@
-bump v0.2.51
+fix barcode rotation
