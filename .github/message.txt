@@ -1,1 +1,1 @@
-change content for cbar
+expose types and fix regex
