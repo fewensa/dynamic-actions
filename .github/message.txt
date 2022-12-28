@@ -1,1 +1,1 @@
-expose types and fix regex
+bump v0.2.51
