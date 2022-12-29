@@ -1,1 +1,5 @@
-bump v0.2.52
+Merge branch 'improve-js' into 'main'
+
+Improve js
+
+See merge request prtmax/psdk!62
