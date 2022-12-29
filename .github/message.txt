@@ -1,5 +1,1 @@
-Merge branch 'yjq-fwq-0.1.0' into 'fwq-0.1.0'
-
-打印机搜索页面，切换打印机提示框中英文混合修复
-
-See merge request repotea-workspace/shiprinter!49
+Merge remote-tracking branch 'origin/fwq-0.1.0' into fwq-0.1.0
