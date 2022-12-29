@@ -1,5 +1,1 @@
-Merge branch 'java-jcz' into 'main'
-
-Java jcz
-
-See merge request prtmax/psdk!60
+fix lint
