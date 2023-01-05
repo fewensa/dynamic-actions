@@ -1,5 +1,1 @@
-Merge branch 'jqy-fwq-0.1.0' into 'fwq-0.1.0'
-
-Jqy fwq 0.1.0
-
-See merge request repotea-workspace/shiprinter!51
+Merge remote-tracking branch 'origin/fwq-0.1.0' into fwq-0.1.0
