@@ -1,5 +1,1 @@
-Merge branch 'yjq_fwq-0.1.0' into 'fwq-0.1.0'
-
-本地名字切换
-
-See merge request repotea-workspace/shiprinter!52
+airprint 只在ios和安卓上显示
