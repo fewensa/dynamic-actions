@@ -1,1 +1,1 @@
-Add fat compatible cainiao
+Bump version to 0.1.9-GA
