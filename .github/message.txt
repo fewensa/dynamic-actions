@@ -1,1 +1,5 @@
-remove null check
+Merge branch 'fix-dart-bug' into 'main'
+
+Fix empty arguments bug
+
+See merge request prtmax/psdk!64
