@@ -1,1 +1,1 @@
-一维码画图
+remove null check
