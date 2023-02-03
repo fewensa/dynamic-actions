@@ -1,5 +1,5 @@
-Merge branch 'dart-jcz' into 'main'
+Merge branch 'java-jcz' into 'main'
 
-Dart jcz
+Java jcz
 
-See merge request prtmax/psdk!65
+See merge request prtmax/psdk!66
