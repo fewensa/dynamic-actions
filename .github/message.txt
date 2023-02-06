@@ -1,1 +1,1 @@
-Init dithering project
+threshold dithering
