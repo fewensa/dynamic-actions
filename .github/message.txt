@@ -1,1 +1,1 @@
-Format
+Init dithering project
