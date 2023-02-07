@@ -1,1 +1,1 @@
-floyd steinberg dithering
+refactor threshold
