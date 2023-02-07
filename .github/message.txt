@@ -1,1 +1,1 @@
-threshold dithering
+floyd steinberg dithering
