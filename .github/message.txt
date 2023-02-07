@@ -1,1 +1,1 @@
-add grayscale complex dithering
+add test for grayscale
