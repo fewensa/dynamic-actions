@@ -1,1 +1,1 @@
-Fix ble connect
+Add compress and reverse to image command
