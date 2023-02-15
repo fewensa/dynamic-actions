@@ -1,1 +1,1 @@
-Merge branch 'dithering-algorithm' of https://gitlab.com/prtmax/psdk into dithering-algorithm
+Add compress and reverse to command
