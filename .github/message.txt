@@ -1,1 +1,1 @@
-Add compress and reverse to command
+Merge branch 'compress-reverse' into dithering-algorithm

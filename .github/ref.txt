@@ -1,1 +1,1 @@
-compress-reverse
+dithering-algorithm
