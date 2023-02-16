@@ -1,1 +1,1 @@
-grayThreshold
+compress-reverse
