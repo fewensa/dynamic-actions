@@ -1,1 +1,1 @@
-timage 先反色后压缩测试
+Fix allow service
