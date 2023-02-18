@@ -1,5 +1,5 @@
-Merge branch 'fewensa-threshold' into 'main'
+Merge branch 'grayThreshold' into 'main'
 
-Add threshold image
+fix java sdk default gray threshold
 
-See merge request prtmax/psdk!73
+See merge request prtmax/psdk!74
