@@ -1,5 +1,5 @@
-Merge branch 'fewensa-imageb' into 'main'
+Merge branch 'fewensa-threshold' into 'main'
 
-Fewensa imageb
+Add threshold image
 
-See merge request prtmax/psdk!71
+See merge request prtmax/psdk!73
