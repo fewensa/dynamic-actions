@@ -1,5 +1,1 @@
-Merge branch 'grayThreshold' into 'main'
-
-fix java sdk default gray threshold
-
-See merge request prtmax/psdk!74
+fix compile and use imageb
