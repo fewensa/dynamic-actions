@@ -1,1 +1,1 @@
-add reverse and fix Image cmd
+解决配对导致app闪退问题（测试发现还是会弹出配对框 但是不会闪退了）
