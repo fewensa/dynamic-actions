@@ -1,5 +1,1 @@
-Merge branch 'fix-wrong-x' into 'main'
-
-Fix wrong x
-
-See merge request prtmax/psdk!82
+爱小印sdk优化 新增RFID
