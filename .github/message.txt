@@ -1,1 +1,5 @@
-爱小印sdk优化 新增RFID
+Merge branch 'java-compress-reverse' into 'main'
+
+新增灰度图 反色功能 image指令移除宽高参数
+
+See merge request prtmax/psdk!77
