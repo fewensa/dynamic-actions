@@ -1,5 +1,5 @@
-Merge branch 'java-compress-reverse' into 'main'
+Merge branch 'PDSdk' into 'main'
 
-新增灰度图 反色功能 image指令移除宽高参数
+爱小印sdk优化 新增RFID
 
-See merge request prtmax/psdk!77
+See merge request prtmax/psdk!83
