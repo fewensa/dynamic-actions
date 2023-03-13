@@ -1,5 +1,5 @@
-Merge branch 'compress-reverse-yjq20230218' into 'main'
+Merge branch 'java-jcz' into 'main'
 
-SDK 压缩与反色
+add generic-esc-usb
 
-See merge request prtmax/psdk!72
+See merge request prtmax/psdk!87
