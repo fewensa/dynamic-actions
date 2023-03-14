@@ -1,5 +1,1 @@
-Merge branch 'flutter_blue_plus' into 'main'
-
-use FlutterBluePlus
-
-See merge request prtmax/psdk!91
+ver 0.0.18
