@@ -1,5 +1,1 @@
-Merge branch 'dart-jcz' into 'main'
-
-allowedCharacteristic fix
-
-See merge request prtmax/psdk!89
+use FlutterBluePlus
