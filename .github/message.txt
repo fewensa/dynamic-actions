@@ -1,5 +1,1 @@
-Merge branch 'add-new-alg' into 'main'
-
-Add new alg
-
-See merge request prtmax/psdk!86
+Improve water maker size
