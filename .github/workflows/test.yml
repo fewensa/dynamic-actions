@@ -9,14 +9,31 @@ jobs:
 
   clone-git:
     runs-on: ubuntu-latest
+    container:
+      image: ubuntu:18.04
     steps:
 
-      - name: Clone repository
-        uses: fewensa/clone-any-action@main
-        with:
-          repository: https://gitlab.com/repotea-workspace/kangumi
-          access_token: '${{ secrets.GITLAB_TOKEN }}'
+      # - name: Clone repository
+      #   uses: fewensa/clone-any-action@main
+      #   with:
+      #     repository: https://gitlab.com/repotea-workspace/kangumi
+      #     access_token: '${{ secrets.GITLAB_TOKEN }}'
+
+
+      - name: Install dependencies
+        run: |
+          apt update -y
+          apt install --no-install-recommends -y \
+            ca-certificates curl git python3-pip zstd \
+            clang make gcc g++ libssl-dev pkg-config protobuf-compiler
+          pip3 install --upgrade pip
+          pip3 install cmake --upgrade
 
       - name: Access cloned repository content
         run: ls -l
+
+      - name:
+        run: |
+          cd .github
+          git rev-parse --short=11 HEAD
 
