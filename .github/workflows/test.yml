@@ -19,6 +19,7 @@ jobs:
       #     repository: https://gitlab.com/repotea-workspace/kangumi
       #     access_token: '${{ secrets.GITLAB_TOKEN }}'
 
+      - uses: actions/checkout@v3
 
       - name: Install dependencies
         run: |
