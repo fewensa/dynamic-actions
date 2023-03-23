@@ -11,26 +11,11 @@ jobs:
     runs-on: ubuntu-latest
     steps:
 
-      # - name: Clone repository
-      #   uses: fewensa/clone-any-action@main
-      #   with:
-      #     repository: https://gitlab.com/repotea-workspace/kangumi
-      #     access_token: '${{ secrets.GITLAB_TOKEN }}'
-
-      - uses: actions/checkout@v3
-
-      # - name: Install dependencies
-      #   run: |
-      #     apt update -y
-      #     apt install --no-install-recommends -y \
-      #       ca-certificates  git tree
+      - name: Clone repository
+        uses: fewensa/clone-any-action@main
+        with:
+          repository: https://gitlab.com/repotea-workspace/kangumi
+          access_token: '${{ secrets.GITLAB_TOKEN }}'
 
       - name: Access cloned repository content
-        run: ls -la
-
-      - name:
-        run: |
-          tree
-          cd .github
-          git rev-parse --short=11 HEAD
-
+        run: ls -l
