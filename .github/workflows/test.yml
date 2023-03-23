@@ -9,8 +9,6 @@ jobs:
 
   clone-git:
     runs-on: ubuntu-latest
-    container:
-      image: ubuntu:18.04
     steps:
 
       # - name: Clone repository
