@@ -25,16 +25,14 @@ jobs:
         run: |
           apt update -y
           apt install --no-install-recommends -y \
-            ca-certificates curl git python3-pip zstd \
-            clang make gcc g++ libssl-dev pkg-config protobuf-compiler
-          pip3 install --upgrade pip
-          pip3 install cmake --upgrade
+            ca-certificates  git tree
 
       - name: Access cloned repository content
-        run: ls -l
+        run: ls -la
 
       - name:
         run: |
+          tree
           cd .github
           git rev-parse --short=11 HEAD
 
