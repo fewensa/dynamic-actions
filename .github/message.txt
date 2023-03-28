@@ -1,1 +1,1 @@
-兼容安卓6以下
+统一bitmap2Bytes
