@@ -1,5 +1,1 @@
-Merge branch 'fix-pd' into 'main'
-
-爱小印OTA
-
-See merge request prtmax/psdk!98
+Merge branch 'main' into try-fix-js
