@@ -1,1 +1,5 @@
-统一bitmap2Bytes
+Merge branch 'fix-pd' into 'main'
+
+爱小印OTA
+
+See merge request prtmax/psdk!98
