@@ -1,1 +1,1 @@
-fix dart test
+fix js test 图片相对路径
