@@ -1,5 +1,1 @@
-Merge branch 'add-sn' into 'main'
-
-add sn
-
-See merge request prtmax/psdk!100
+fix dart test
