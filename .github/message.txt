@@ -1,1 +1,1 @@
-优化爱丽熊sdk
+add qr386 sdk
