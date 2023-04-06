@@ -1,1 +1,5 @@
-fix test
+Merge branch 'add-sn' into 'main'
+
+add sn
+
+See merge request prtmax/psdk!100
