@@ -1,1 +1,1 @@
-add allowedReadCharacteristic
+esc压缩 不要前2个byte
