@@ -1,5 +1,1 @@
-Merge branch 'try-fix-js' into 'main'
-
-Try fix js
-
-See merge request prtmax/psdk!97
+add allowedReadCharacteristic
