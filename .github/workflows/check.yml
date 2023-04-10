@@ -151,53 +151,53 @@ jobs:
           name: shared-artifact
           path: shared
 
-  build-swift-framework:
-    name: Build swift-framework
-    runs-on: macos-latest
-    steps:
-      - uses: actions/checkout@v2
-      - uses: actions/checkout@v2
-        with:
-          repository: fewensa/actions
-          path: .github/actions
-      - name: Checkout
-        uses: ./.github/actions/clone-any
-        with:
-          platform: gitlab
-          repository: prtmax/psdk
-          access_token: '${{ secrets.GITLAB_TOKEN }}'
-          ref_file: .github/ref.txt
-
-      - name: Install dependencies
-        run: |
-          brew install p7zip
-          brew install coreutils
-
-      - uses: swift-actions/setup-swift@v1
-        with:
-          swift-version: '5.5'
-
-      - name: Build framework
-        run: swift/scripts/build-framework.sh
-
-      - name: Collect shared
-        run: |
-          mkdir -p shared/psdk/ios
-          cp -r swift/fruits/*/target/*.framework ./shared/psdk/ios/
-
-      - name: Prepare framework
-        run: |
-          cd shared/psdk/ios
-          for F in $(ls); do
-            7z a -tzip ${F}.zip ./${F}
-            rm -rf ${F}
-          done
-
-      - name: Upload shared
-        uses: actions/upload-artifact@v2
-        with:
-          name: shared-artifact
-          path: shared
+#  build-swift-framework:
+#    name: Build swift-framework
+#    runs-on: macos-latest
+#    steps:
+#      - uses: actions/checkout@v2
+#      - uses: actions/checkout@v2
+#        with:
+#          repository: fewensa/actions
+#          path: .github/actions
+#      - name: Checkout
+#        uses: ./.github/actions/clone-any
+#        with:
+#          platform: gitlab
+#          repository: prtmax/psdk
+#          access_token: '${{ secrets.GITLAB_TOKEN }}'
+#          ref_file: .github/ref.txt
+#
+#      - name: Install dependencies
+#        run: |
+#          brew install p7zip
+#          brew install coreutils
+#
+#      - uses: swift-actions/setup-swift@v1
+#        with:
+#          swift-version: '5.5'
+#
+#      - name: Build framework
+#        run: swift/scripts/build-framework.sh
+#
+#      - name: Collect shared
+#        run: |
+#          mkdir -p shared/psdk/ios
+#          cp -r swift/fruits/*/target/*.framework ./shared/psdk/ios/
+#
+#      - name: Prepare framework
+#        run: |
+#          cd shared/psdk/ios
+#          for F in $(ls); do
+#            7z a -tzip ${F}.zip ./${F}
+#            rm -rf ${F}
+#          done
+#
+#      - name: Upload shared
+#        uses: actions/upload-artifact@v2
+#        with:
+#          name: shared-artifact
+#          path: shared
 
   upload-psdkext:
     name: Upload psdkext
@@ -205,7 +205,7 @@ jobs:
     needs:
       - build-dylib-android
       - build-dylib-ios
-      - build-swift-framework
+#      - build-swift-framework
     steps:
       - uses: actions/download-artifact@v2
         with:
@@ -216,7 +216,7 @@ jobs:
         run: |
           (cd shared/psdkext/android && sha256sum * | tee sha256sums.txt)
           (cd shared/psdkext/ios && sha256sum * | tee sha256sums.txt)
-          (cd shared/psdk/ios && sha256sum * | tee sha256sums.txt)
+#          (cd shared/psdk/ios && sha256sum * | tee sha256sums.txt)
 
       - name: Upload psdkext
         run: |
