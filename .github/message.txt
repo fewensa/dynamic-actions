@@ -1,1 +1,5 @@
-解决tspl反色打印 右边多了条黑线
+Merge branch 'dart-charact' into 'main'
+
+add allowedReadCharacteristic
+
+See merge request prtmax/psdk!101
