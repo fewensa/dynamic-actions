@@ -1,1 +1,1 @@
-test-error
+type修改成对应指令
