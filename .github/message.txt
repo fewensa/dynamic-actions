@@ -1,1 +1,1 @@
-type修改成对应指令
+fix issue
