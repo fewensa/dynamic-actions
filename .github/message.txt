@@ -1,1 +1,5 @@
-add xxy
+Merge branch 'android_ble' into 'main'
+
+Android ble
+
+See merge request prtmax/psdk!106
