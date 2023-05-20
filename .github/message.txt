@@ -1,1 +1,1 @@
-encodeJpg-->encodePng
+remove test-gray
