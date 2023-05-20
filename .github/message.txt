@@ -1,1 +1,1 @@
-remove test-gray
+add test-gray
