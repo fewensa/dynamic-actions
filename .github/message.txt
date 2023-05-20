@@ -1,1 +1,1 @@
-Merge branch 'main' into psdk_xxy
+优化爱小印sdk
