@@ -1,1 +1,1 @@
-add qr386 sdk
+PeriPagePrinter-Wifitest-Integrate-20230605.jar
