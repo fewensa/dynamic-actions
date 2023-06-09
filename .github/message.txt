@@ -1,5 +1,1 @@
-Merge branch 'policy' into 'master'
-
-增加隐私政策 用户协议入口
-
-See merge request repotea-workspace/shiprinter!53
+Update vid
