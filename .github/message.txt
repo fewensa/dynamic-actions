@@ -1,1 +1,1 @@
-add xxy usb
+_connectedDevice = null
