@@ -1,1 +1,1 @@
-_connectedDevice = null
+fix pom
