@@ -1,0 +1,94 @@
+name: '[macrecord] Release macrecord'
+
+on:
+  push:
+    branches:
+      - '**'
+
+jobs:
+  build-win:
+    name: Build macrecord
+    runs-on: windows-latest
+    steps:
+
+      - uses: actions/checkout@v2
+
+      - uses: actions/checkout@v2
+        with:
+          repository: fewensa/actions
+          path: .github/actions
+
+      - name: Checkout
+        uses: ./.github/actions/clone-any
+        with:
+          platform: gitlab
+          repository: prtmax/macrecord
+          access_token: '${{ secrets.GITLAB_TOKEN }}'
+          ref_file: .github/ref.txt
+
+      - uses: lukka/get-cmake@latest
+      - name: Setup vcpkg
+        uses: lukka/run-vcpkg@v10
+        with:
+          vcpkgGitCommitId: 27fd32e91c172e8b8a2ee338efc088a0c0103348
+
+
+      - name: Install dependencies
+        run: |
+          vcpkg install openssl:x64-windows-static
+
+
+      - name: Install rust toolchain
+        uses: actions-rs/toolchain@v1
+        with:
+          toolchain: ${{ env.RUST_TOOLCHAIN }}
+          target: x86_64-pc-windows-msvc
+
+      - name: Build bridger
+        run: |
+          cargo build --release --target x86_64-pc-windows-msvc
+
+
+      - name: Collect shared
+        run: |
+          mkdir -p shared
+          7z a -tzip `
+            shared/macrecord-${{ matrix.package }}-windows-x86_64.zip `
+            ./target/x86_64-pc-windows-msvc/release/macrecord.exe
+
+      - name: Upload shared
+        uses: actions/upload-artifact@v2
+        with:
+          name: release-artifact
+          path: shared
+
+
+  complete-build:
+    name: Complete build
+    runs-on: ubuntu-latest
+    needs: [ build-macos, build-docker-image ]
+    steps:
+
+      - uses: actions/download-artifact@v2
+        with:
+          name: release-artifact
+          path: shared
+
+      - name: Hash file
+        run: |
+          (cd shared && sha256sum * | tee sha256sums.txt)
+
+      - uses: benjlevesque/short-sha@v2.1
+        id: short-sha
+
+
+      - name: Publish github release
+        uses: softprops/action-gh-release@v1
+        with:
+          files: |
+            shared/*
+          token: ${{ secrets.GITHUB_TOKEN }}
+          name: sha-${{ steps.short-sha.outputs.sha }}
+          tag_name: sha-${{ steps.short-sha.outputs.sha }}
+          prerelease: true
+
