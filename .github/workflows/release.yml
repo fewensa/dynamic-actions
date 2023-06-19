@@ -63,10 +63,10 @@ jobs:
           path: shared
 
 
-  complete-build:
+  release-package:
     name: Complete build
     runs-on: ubuntu-latest
-    needs: [ build-macos, build-docker-image ]
+    needs: [ build-win ]
     steps:
 
       - uses: actions/download-artifact@v2
