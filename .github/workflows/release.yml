@@ -5,6 +5,10 @@ on:
     branches:
       - '**'
 
+env:
+  OPENSSL_STATIC: 1
+  RUST_TOOLCHAIN: nightly
+
 jobs:
   build-win:
     name: Build macrecord
