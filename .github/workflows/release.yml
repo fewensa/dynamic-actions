@@ -57,7 +57,7 @@ jobs:
         run: |
           mkdir -p shared
           7z a -tzip `
-            shared/macrecord-${{ matrix.package }}-windows-x86_64.zip `
+            shared/macrecord-windows-x86_64.zip `
             ./target/x86_64-pc-windows-msvc/release/macrecord.exe
 
       - name: Upload shared
