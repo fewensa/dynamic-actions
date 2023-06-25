@@ -1,5 +1,1 @@
-Merge branch 'xxy-usb' into 'main'
-
-Xxy usb
-
-See merge request prtmax/psdk!108
+improve deviceMac
