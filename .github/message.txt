@@ -1,5 +1,1 @@
-Merge branch 'psdk-iOS' into 'main'
-
-Psdk i os
-
-See merge request prtmax/psdk!111
+add hazardous waste
