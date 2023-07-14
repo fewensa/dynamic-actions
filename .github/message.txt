@@ -1,1 +1,1 @@
-add hazardous waste
+fix js sdk
