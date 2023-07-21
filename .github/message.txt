@@ -1,1 +1,5 @@
-flutter_blue_plus 作者一直在频繁更新 暂时写死版本号
+Merge branch 'psdk-iOS' into 'main'
+
+Psdk iOS
+
+See merge request prtmax/psdk!113
