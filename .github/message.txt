@@ -1,1 +1,1 @@
-bluetoothScan 异常
+remove await
