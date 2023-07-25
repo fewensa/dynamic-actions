@@ -1,1 +1,1 @@
-remove await
+Permission.isGranted
