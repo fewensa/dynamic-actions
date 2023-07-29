@@ -1,1 +1,1 @@
-Permission.isGranted
+setTimeout 300->800
