@@ -1,1 +1,1 @@
-setTimeout 300->800
+新增 setBTType 指令
