@@ -1,1 +1,5 @@
-publish 0.1.11-SNAPSHOTS
+Merge branch 'java-imagej' into 'main'
+
+Java imagej
+
+See merge request prtmax/psdk!114
