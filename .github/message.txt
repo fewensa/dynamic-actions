@@ -1,1 +1,1 @@
-Fix template query
+Add analysis api
