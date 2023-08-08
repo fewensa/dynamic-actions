@@ -1,1 +1,1 @@
-Switch to new protocol part 1
+Bump java version to 0.1.12-GA
