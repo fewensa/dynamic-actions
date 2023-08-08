@@ -1,5 +1,1 @@
-Merge branch 'improve-java-sdk' into 'main'
-
-Improve java sdk
-
-See merge request prtmax/psdk!115
+Release java 0.1.13-GA
