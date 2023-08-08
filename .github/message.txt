@@ -1,1 +1,1 @@
-improve template modify
+Switch to new protocol part 1
