@@ -1,1 +1,1 @@
-Bump java version to 0.1.12-GA
+Fix deppon
