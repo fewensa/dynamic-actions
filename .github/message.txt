@@ -1,5 +1,1 @@
-Merge branch 'dart-jcz' into 'main'
-
-Dart jcz
-
-See merge request prtmax/psdk!116
+delete package-info
