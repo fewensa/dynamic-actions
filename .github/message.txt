@@ -1,1 +1,1 @@
-java sdk 新增wifi指令
+java sdk 依赖修复
