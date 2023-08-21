@@ -1,1 +1,1 @@
-修复 js ci
+特征值read 改成notify
