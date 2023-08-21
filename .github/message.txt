@@ -1,1 +1,1 @@
-特征值read 改成notify
+js ver 0.2.58
