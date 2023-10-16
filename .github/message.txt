@@ -1,1 +1,1 @@
-upgrade nodejs to 18
+bump 0.2.60
