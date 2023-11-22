@@ -1,1 +1,1 @@
-Merge remote-tracking branch 'origin/jcz-fix' into jcz-fix
+dart FakeConnectedDevice remove abstract
