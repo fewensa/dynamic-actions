@@ -1,1 +1,1 @@
-FlutterBluePlus.startScan  oneByOne: true
+fix bug
