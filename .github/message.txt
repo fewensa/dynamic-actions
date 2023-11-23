@@ -1,1 +1,1 @@
-EImageA QR-285A特殊的压缩指令采用这个
+windowBits: 10
