@@ -1,1 +1,1 @@
-dart _topbitimgRaw fix
+bump lerna and ignore .nx
