@@ -1,1 +1,1 @@
-bump lerna and ignore .nx
+box指令移除限制宽度
