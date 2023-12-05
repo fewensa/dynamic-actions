@@ -1,1 +1,1 @@
-Ble mac地址取广播值
+添加是否使用广播mac useAdvertisementDataMac
