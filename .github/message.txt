@@ -1,1 +1,1 @@
-js wx.setBLEMTU
+js ver 0.2.65
