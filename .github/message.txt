@@ -1,1 +1,1 @@
-dart 移除蓝牙过滤 过滤都放在app层处理
+java PendingIntent.FLAG_IMMUTABLE
