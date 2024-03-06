@@ -1,1 +1,1 @@
-isConnected() 判断优化
+isConnected 判断调整
